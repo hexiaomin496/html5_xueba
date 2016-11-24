@@ -13,7 +13,7 @@ class VideosController extends Controller{
 	public function create(){
 		$this->display();
 	}
-
+    //视频上传
 	public function store(){
 		$videos=D('videos');
 		$linfo=$videos->table('')->select();
