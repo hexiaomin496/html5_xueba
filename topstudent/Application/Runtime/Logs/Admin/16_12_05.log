@@ -1,0 +1,85 @@
+[ 2016-12-05T12:42:15+08:00 ] 127.0.0.1 /topstudent/index.php/Admin/books
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000398s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000560s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000619s ]
+SQL: SHOW COLUMNS FROM `books` [ RunTime:0.0332s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `books` LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `books` ORDER BY book_publish desc LIMIT 0,3   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000136s ]
+NOTIC: [8] Undefined index: book_type D:\WebServer\wwwroot\topstudent\Application\Runtime\Cache\Admin\dfaf1244c6b9d147e09ab5ace81b4e69.php 第 108 行.
+NOTIC: [8] Undefined index: book_type D:\WebServer\wwwroot\topstudent\Application\Runtime\Cache\Admin\dfaf1244c6b9d147e09ab5ace81b4e69.php 第 108 行.
+NOTIC: [8] Undefined index: book_type D:\WebServer\wwwroot\topstudent\Application\Runtime\Cache\Admin\dfaf1244c6b9d147e09ab5ace81b4e69.php 第 108 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013744s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013804s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000373s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000425s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000627s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000678s ]
+
+[ 2016-12-05T12:42:26+08:00 ] 127.0.0.1 /topstudent/index.php/Admin/tests/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000427s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000607s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000666s ]
+SQL: SHOW COLUMNS FROM `tests` [ RunTime:0.0348s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tests` LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `tests` ORDER BY test_publish desc LIMIT 0,3   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000140s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014500s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014624s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000341s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000392s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000668s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000721s ]
+
+[ 2016-12-05T12:42:27+08:00 ] 127.0.0.1 /topstudent/index.php/Admin/videos/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000557s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000870s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000959s ]
+ERR: 1146:Table 'topstudent.videos' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `videos`
+ERR: 1146:Table 'topstudent.videos' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `videos`
+
+[ 2016-12-05T12:42:30+08:00 ] 127.0.0.1 /topstudent/index.php/Admin/answers/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000395s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000509s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000566s ]
+ERR: 1146:Table 'topstudent.question' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `question`
+ERR: 1146:Table 'topstudent.question' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `question`
+
+[ 2016-12-05T12:42:33+08:00 ] 127.0.0.1 /topstudent/index.php/Admin/questions/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000398s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000584s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000659s ]
+ERR: 1146:Table 'topstudent.question' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `question`
+ERR: 1146:Table 'topstudent.question' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `question`
+
