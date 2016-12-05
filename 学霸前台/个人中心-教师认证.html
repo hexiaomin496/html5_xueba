@@ -40,35 +40,57 @@
                 <p>何大敏</p>
             </div>
             <ul class="left_nav">
-            		<li class="left_nav_now"><a href="个人中心.html">首页</a></li>
+            		<li><a href="个人中心.html">首页</a></li>
                 	<li><a href="个人中心-我的问题.html">我的问题</a></li>
                     <li><a href="个人中心-我的回答.html">我的回答</a></li>
                     <li><a href="个人中心-视频收藏.html">视频收藏</a></li>
                     <li><a href="个人中心-试卷收藏.html">试卷收藏</a></li>
                     <li><a href="个人中心-个人管理.html">个人管理</a></li>
                     
-                    <li><a href="个人中心-教师认证.html">教师认证</a></li>
+                    <li class="left_nav_now"><a href="个人中心-教师认证.html">教师认证</a></li>
 			</ul>    	
         </div>
         <!--个人中心right-->
-        <div class="personal_form_right">
-        	<h1>我的积分<span> My points</span></h1>
-            <div class="exper"><img src="images/jdt.png" alt="exper" /></div>
-            <div class="exper1 form_bg">
-            	<h1>个人信息</h1>
-                <ul>
-                	<li>姓名<span>何大敏</span></li>
-                    <li>电话<span>18600001111</span></li>
-                    <li>学习阶段<span>初中</span></li>
-                    <li>是否教师<span>否</span></li>
-                </ul>
-			</div>
-            <div class="exper1 exper2 form_bg">
-            	<h1>个人介绍</h1>
-                <ul>
-                    <li class="garyli">活到老学到老，学海无涯苦作舟。活到老学到老，学海无涯苦作舟。活到老学到老，学海无涯苦作舟。活到老学到老，学海无涯苦作舟。活到老学到老，学海无涯苦作舟。</li>
-                </ul>
-			</div>
+        <div class="personal_form_right form_bg">
+        <h1>教师认证<span> Teacher certification</span></h1>
+        	<div class="img">
+        	<div class="file-box">  
+                 <input type='button' class='add' /> 
+                 <input type="file" name="fileField" class="file file1" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" accept="image/jpeg,image/gif,image/png"/> 
+            </div>
+            <p>请上传教师资格证</p>
+            </div>
+            <div class="form1">
+            <form action="">
+            	<table cellspacing="30">
+                	<tr>
+                    	<td>学科</td>
+                        <td><select>
+                        		<option value="1">数学</option>
+                                <option value="2" selected = "selected">英语</option>
+                                <option value="3">语文</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                    	<td>就职院校</td>
+                        <td><input type="text" name="" value="" /></td>
+                    </tr>
+                    <tr>
+                    	<td>审核状态</td>
+                        <td class="nopass">未通过</td>
+                    </tr>
+                    <tr>
+                    	<td colspan="2" class="button"><input type="button" value="申请" name="" /></td>
+                    </tr>
+                    <tr>
+                    	<td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                    	<td>&nbsp;</td>
+                    </tr>
+                </table>
+            </form>
+            </div>
         </div>
 	</div>
 </div>

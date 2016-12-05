@@ -25,7 +25,20 @@ height:100px;
 .left{
 	width:288px;
 	float:left;
+	border:1px solid #d1cdbf;
 	background-color:#FFF;}
+.left h1{
+	font-weight:normal;
+	font-size:18px;
+	color:#0c2a4c;
+	background:url(../images/rdsp.gif) no-repeat 5px;
+	text-indent:10px;
+	margin:10px;
+	}
+.left h1 span{
+	font-size:12px;
+	color:#baa6a6;
+	}
 .lul{
 	padding:5px 24px 10px 24px;}
 .lul li{
@@ -58,11 +71,17 @@ height:100px;
 	font-weight:normal;
 	color:#26272c;
 	font-size:14px;}
+.tit2{
+	color:#ccc;
+	font-size:14px;
+	font-weight:normal;
+	}
 .lul h3{
 	margin-top:5px;
 	color:#888888;
 	font-size:12px;
 	font-weight:normal;}
+
 .right{
 	overflow:auto;
 	float:left;
