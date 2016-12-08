@@ -2,12 +2,21 @@
    namespace Admin\Controller;
    use Think\Controller;
    class BooksController extends Controller{
+
+   	public function __construct() {
+    parent::__construct();
+    
+    if (!isLogin()) {
+      $this->error("请先登录", U("Admins/login"));
+    }
+  }
+
      //各个课本浏览函数
    	 public function index(){
    	 
    	   $booksModel=M("books");
        //导入分页
-       import('Org.Util.Page');
+       /*import('Org.Util.Page');
        $count=$booksModel->count();
        //每一页显示的记录数为3
        $page=new \Think\Page($count,3);
@@ -16,10 +25,28 @@
        $page->setConfig('prev','前一页');
        $page->setConfig('next','后一页');
        //实现分页查看信息
+       */
        $books=$booksModel->order('book_publish desc')->page($nowPage.',3')->select();
-       $show=$page->show();
-       $this->assign('page',$show);
+       //$show=$page->show();
+       //$this->assign('page',$show);
        $this->assign('books',$books);
+       $count = $booksModel->count();// 查询满足要求的总记录数
+		 $Page = new \Think\Page($count,4);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+
+      $Page->setConfig('header','<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
+      $Page->setConfig('prev','上一页');
+      $Page->setConfig('next','下一页');
+      $Page->setConfig('last','末页');
+      $Page->setConfig('first','首页');
+      $Page->setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
+
+      $show = $Page->show();// 分页显示输出
+        // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+      $list = $booksModel->order('book_id')->limit($Page->firstRow.','.$Page->listRows)->select();
+    
+      $this->assign('list',$list);// 赋值数据集
+      
+      $this->assign('page',$show);// 赋值分页输出
        $this->display();
     }
 
@@ -158,5 +185,65 @@
             $this->showError('删除失败');
          }
        }
+
+       //批量删除
+       public function deleteAll(){	
+       		$booksModel = M('books');
+       		$id = $_GET['id'];
+       		$i=0;
+       		foreach ($id as $key => $value) {
+       			$it=$value;
+       			//$it=(int)$it;
+       			$where = 'book_id='.$it;
+       			$list[$i]=$booksModel->where($where)->delete();
+       			$i++;
+       		}
+       		
+       		  
+       		if($list){	
+       			$this->success("成功删除{$i}条",U('index'));
+       		}
+       		else{	
+       			$this->error('删除失败');
+       		}
+       }
+
+        //日期查询
+       public function query(){
+        $booksModel = M('books');
+
+        //$starttime = strtotime(I('post.date1'));
+        //$endtime = strtotime(I('post.date2'));
+        $starttime1 = I('post.date1');
+        $endtime1 = I('post.date2');
+
+        $starttime2 = strtotime($starttime1);
+        $endtime2 = strtotime($endtime1);
+
+        $starttime = date("Y-m-d H:i:s", $starttime2);
+        $endtime = date("Y-m-d H:i:s", $endtime2);
+
+        $condition['book_publish'] = array('between',array($starttime,$endtime));
+        $data = $booksModel->where($condition)->count();
+         $data = $booksModel->where($condition)->select();
+        $this->assign('books2',$data);
+
+        $count = $booksModel->where($condition)->count();// 查询满足要求的总记录数
+        //var_dump($count);
+        $Page = new \Think\Page($count,4);// 实例化分页类 
+        $Page->setConfig('header','<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
+        $Page->setConfig('prev','上一页');
+        $Page->setConfig('next','下一页');
+        $Page->setConfig('last','末页');
+        $Page->setConfig('first','首页');
+        $Page->setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
+
+        $data = $booksModel->where($condition)->order('book_id')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $this->assign('list',$data);
+
+        $show = $Page->show();// 分页显示输出
+        $this->assign('page',$show);// 赋值分页输出
+        $this->display();
+   }
    }
 ?>
