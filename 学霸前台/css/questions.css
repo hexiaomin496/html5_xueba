@@ -152,3 +152,9 @@
 	color:#2f8abb;
 	text-decoration:none;
 	}
+.qtop p{
+	width:700px;
+	overflow:auto;
+	line-height:24px;
+	padding:20px;
+	color:#666;}
