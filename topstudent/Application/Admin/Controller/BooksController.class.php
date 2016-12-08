@@ -5,7 +5,7 @@
 
    	public function __construct() {
     parent::__construct();
-
+    
     if (!isLogin()) {
       $this->error("请先登录", U("Admins/login"));
     }
@@ -13,7 +13,7 @@
 
      //各个课本浏览函数
    	 public function index(){
-
+   	 
    	   $booksModel=M("books");
        //导入分页
        /*import('Org.Util.Page');
@@ -43,9 +43,9 @@
       $show = $Page->show();// 分页显示输出
         // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
       $list = $booksModel->order('book_id')->limit($Page->firstRow.','.$Page->listRows)->select();
-
+    
       $this->assign('list',$list);// 赋值数据集
-
+      
       $this->assign('page',$show);// 赋值分页输出
        $this->display();
     }
@@ -70,7 +70,7 @@
         $upload->exts=array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
         $upload->rootPath  = THINK_PATH; // 设置附件上传根目录
         $upload->savePath  ='../Public/uploads/'; // 设置附件上传（子）目录
-        // 上传文件
+        // 上传文件 
         $info   =   $upload->upload();
         // dump($info);
         if(!$info) {// 上传错误提示错误信息
@@ -81,13 +81,13 @@
             $bookModel = M('books');
             //组织数据
             $data=$bookModel->create();
-
+           
             //设置thumb字段属性(目录+名字)
            $data['book_img']=$info['fileField']['savepath'].$info['fileField']['savename'];
-
+             
             // $bookModel->add($data);
-
-
+           
+                     
           // $model=M("Books");
           // $model->create();
           // dump($data);
@@ -100,8 +100,8 @@
          }
        }
      }
-
-     //课本封面上传函数
+      
+     //课本封面上传函数    
    	 public function  doAdd(){
    	 	$upload= new \Think\Upload();//实例化上传类
    	 	$upload->maxsize=3145728;
@@ -117,7 +117,7 @@
    	 	}else{
    	 		$booksModel=M('books');
    	 		$data=$booksModel->create();
-
+            
             //设置thumb字段属性
             $data['book_cover']=$info['thumb']['savepath'].$info['thumb']['savename'];
             // $data['book_publish']=$info['thumb']['savetime'];
@@ -127,7 +127,7 @@
             }else{
                 $this->showError('数据添加失败');
             }
-
+            
    	 	}
    	 }
 
@@ -146,7 +146,7 @@
      //  }else{
      //    $booksModel=M('books');
      //    $data=$booksModel->create();
-
+            
      //        //设置thumb字段属性
      //    $data['book_img']=$info['thumb']['savepath'].$info['thumb']['savename'];
      //        // $data['book_publish']=$info['thumb']['savetime'];
@@ -171,10 +171,10 @@
           }
          }
 
-
+         
          $this->display();
        }
-
+      
       //课本单项删除函数
        public function delete(){
          $id=I('id');
@@ -187,7 +187,7 @@
        }
 
        //批量删除
-       public function deleteAll(){
+       public function deleteAll(){	
        		$booksModel = M('books');
        		$id = $_GET['id'];
        		$i=0;
@@ -198,12 +198,12 @@
        			$list[$i]=$booksModel->where($where)->delete();
        			$i++;
        		}
-
-
-       		if($list){
+       		
+       		  
+       		if($list){	
        			$this->success("成功删除{$i}条",U('index'));
        		}
-       		else{
+       		else{	
        			$this->error('删除失败');
        		}
        }
@@ -230,7 +230,7 @@
 
         $count = $booksModel->where($condition)->count();// 查询满足要求的总记录数
         //var_dump($count);
-        $Page = new \Think\Page($count,4);// 实例化分页类
+        $Page = new \Think\Page($count,4);// 实例化分页类 
         $Page->setConfig('header','<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
         $Page->setConfig('prev','上一页');
         $Page->setConfig('next','下一页');
