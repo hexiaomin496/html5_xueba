@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>学霸养成后台管理系统</title>
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style2.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container-fluid">
+	<div class="row header">
+    	<h1>学霸养成后台管理系统<span>欢迎您，王小明！<a href="login.html">退出</a></span></h1>
+    </div>
+</div>
+<div class="container-fluid">
+	<div class="row content">
+    	<div class="col-md-2 col-xs-2 left">
+        	<div class="panel-group" id="accordion">
+    			<div class="panel panel-default">
+        			<div class="panel-heading">
+            			<h4 class="panel-title con">
+                		<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">内容管理</a>
+            			</h4>
+        			</div>
+        			<div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                        	<ul>
+                            	<li><a href="内容管理-视频管理.html">视频管理</a></li>
+                                <li class="linow"><a href="内容管理-课本管理.html">课本管理</a></li>
+                                <li><a href="内容管理-试卷管理.html">试卷管理</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title question">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">问答管理</a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                        	<ul>
+                            	<li><a href="问答管理-问题审核.html">问题审核</a></li>
+                                <li><a href="问答管理-回复审核.html">回复审核</a></li>
+                            </ul>
+                        </div>
+        			</div>
+    			</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title user">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">用户管理</a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                        	<ul>
+                            	<li><a href="问答管理-用户列表.html">用户列表</a></li>
+                                <li><a href="问答管理-教师管理.html">教师管理</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+		<div class="col-md-10 col-xs-10 right">
+        	<h1>课本编辑</h1>
+            <div class="rightcon">
+            	<img src="images/book.jpg" width="148" alt="" />
+                <div class="bookpage">
+                	<button class="buttonleft"></button>
+                    <button class="add"></button>
+                    <div class="bookcon">
+                    	<img src="images/bookpage.jpg" alt="">
+                        <img src="images/bookpage.jpg" alt="">
+                        <img src="images/bookpage.jpg" alt="">
+                        <img src="images/bookpage.jpg" alt="">
+                        <img src="images/bookpage.jpg" alt="">
+                        <img src="images/bookpage.jpg" alt="">
+                        <img src="images/bookpage.jpg" alt="">
+                    </div>
+                    <button class="buttonright"></button>
+                </div>
+                <div class="buttongroup">
+                <table class="form">
+                	<tr>
+                    	<td style="width:86px;">课本标题：</td>
+                        <td><input type="text" value="人教版小学一年级语文上册"></td>
+                    </tr>
+                    <tr>
+                    	<td>课本简介：</td>
+                        <td rowspan="2"><textarea>小学一年级的语文，讲解一些拼音，简单汉字，中文用法等等，适合7岁左右儿童食用。小学一年级的语文，讲解一些拼音，简单汉字，中文用法等等，适合7岁左右儿童食用。小学一年级的语文，讲解一些拼音，简单汉字，中文用法等等，适合7岁左右儿童食用。</textarea></td>
+                    </tr>
+                    <tr>
+                    	<td>&nbsp;</td> 
+                    </tr>
+                    <tr>
+                    	<td>分类标签：</td>
+                        <td><select>
+                			<option value="">语文学科</option>
+                            <option value="">教育分类</option>
+                            <option value="">教育分类</option>
+                		</select></td>
+                    </tr>
+                    <tr>
+                    	<td>&nbsp;</td>
+                        <td><button class="button" >保存</button></td>
+                    </tr>
+                </table>     
+                </div>
+			</div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

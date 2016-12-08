@@ -1,0 +1,102 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+*{
+	margin:0;
+	padding:0;
+	list-style:none;
+	border:0;
+	font-family:"微软雅黑";
+	}
+a
+{
+   font-size:14px;
+   color:#000000;
+   text-decoration:none;
+}
+a:hover{
+	text-decoration:underline;}
+ul{
+	margin:0px;
+	padding:0px;
+	}
+li{
+	list-style:none;
+	margin:0px;
+	padding:0px;
+	}
+h1{
+	margin:0px;
+	padding:0px;
+	}
+img
+{
+   border:0px;
+}
+body
+{
+    background-color:#fff;
+}
+body,html{
+	height: 100%;
+}
+
+/**************************头部****************************/
+.mybody{
+	width:1200px;
+	margin:0 auto;
+	}
+.header{
+	width:100%;
+	background:#fff;
+	}
+.header img{
+	margin:10px 0;
+}
+.nav{
+	float:right;
+	margin-top:20px;
+	}
+.nav li{
+	float:left;
+	margin-left:32px;
+	}
+.nav li a{
+	display:block;
+	font-size:18px;
+	color:rgb(68,68,68);
+	padding:4px 6px;
+	}
+.nav li a:hover{
+	color:rgb(90,142,246);
+	text-decoration:none;
+	border-bottom:2px solid rgb(90,142,246);
+	background:#fff;
+	}
+.nav .navnow a{
+	color:rgb(90,142,246);
+	text-decoration:none;
+	border-bottom:2px solid rgb(90,142,246);
+	}
+.login{
+	float:right;
+	margin-left:80px;
+	margin-top:24px;
+	}
+.login a:hover{
+	color:rgb(90,142,246);
+	text-decoration:none;
+	}
+	
+/**************************底部*********************************/
+.footer{
+	width:100%;
+	background:rgb(12,42,76);
+	height:76px;
+	float:left;
+	}
+.footer p{
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+	line-height:76px;
+	}
