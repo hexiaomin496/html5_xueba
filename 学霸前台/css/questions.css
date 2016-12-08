@@ -158,3 +158,10 @@
 	line-height:24px;
 	padding:20px;
 	color:#666;}
+.headimg{
+	border-radius:80px;
+-moz-border-radius:80px; 
+-webkit-border-radius:80px;
+width:80px;
+height:80px;
+}
