@@ -36,39 +36,30 @@
     	  	<div class="left">
         	<h1>热点视频 <span>hot videoes</span></h1>
             <ul class="lul">
-            	<li>
-                	<span class="lulspan">1</span>
+            <volist name="hot" id="hot">
+            <if condition="($key eq 0 )">
+                <li>
+                    <span class="lulspan">{$key+1}</span>
                     <div class="lfirst">
-               	    	<img src="__PUBLIC__/home/images/rdimg.gif" width="88" height="59" alt="rd" /> 
+                        <img src="__PUBLIC__/{$hot.video_img}" width="88" height="59" alt="rd" /> 
                         <div class="lfright">
-                        	<h2><a href="#">三分钟教你如何激发孩子兴趣</a></h2>
-                            <h3>播放次数：22万</h3>
+                            <h2><a href="{:U('home/video/detail')}/id/{$hot.video_id}">{$hot.video_title}</a></h2>
+                            <h3>播放次数：{$hot.video_count}</h3>
                         </div>
                     </div>
-                </li>
+                </li> 
+            </if>
+            <if condition="($key eq 1) OR ($key eq 2)">
                 <li>
-                    <h2>2&nbsp;<a>三分钟教你如何激发孩子兴趣</a></h2>
+                    <h2>{$key+1}&nbsp;<a href="{:U('home/video/detail')}/id/{$hot.video_id}">{$hot.video_title}</a></h2>
                 </li>
-                <li>
-                    <h2>3&nbsp;<a>三分钟教你如何激发孩子兴趣</a></h2>
-                </li>
+            </if>
+            <if condition="($key gt 2) AND ($key lt 9)">
                 <li class="tit2">
-                    <h2>4&nbsp;<a>三分钟教你如何激发孩子兴趣</a></h2>
+                    <h2>{$key+1}&nbsp;<a href="{:U('home/video/detail')}/id/{$hot.video_id}">{$hot.video_title}</a></h2>
                 </li>
-                <li class="tit2">
-                    <h2>5&nbsp;<a>三分钟教你如何激发孩子兴趣</a></h2>
-                </li>
-                <li class="tit2">
-                    <h2>6&nbsp;<a>三分钟教你如何激发孩子兴趣</a></h2>
-                </li>
-                <li class="tit2">
-                    <h2>7&nbsp;<a>三分钟教你如何激发孩子兴趣</a></h2>
-                </li>
-                
-                <li class="tit2">
-                    <h2>8&nbsp;<a>三分钟教你如何激发孩子兴趣</a></h2>
-                </li>
-               
+            </if>
+            </volist>
             </ul>
         </div>
         </div>
@@ -78,7 +69,7 @@
                 <volist name="list" id="list">
                 	<div class="video2">
                         	<div class="vimg">
-                            <a href="#"><img src="__PUBLIC__/{$list.video_img}" width="194" height="127" alt="" /></a>
+                            <a href="{:U('home/video/detail')}/id/{$list.video_id}"><img src="__PUBLIC__/{$list.video_img}" width="194" height="127" alt="" /></a>
                             <div class="video_tit">
                             	<img src="__PUBLIC__/home/images/play.png" alt="" /><h3>{$list.video_count}次</h3>
                             </div>
@@ -87,7 +78,8 @@
                     </div>
                 </volist>
 					  <div class="page">
-                    	<ul>{$page}
+                    	<ul>
+                        {$page} 
                         	<!-- <li class="up"><a href="#">上一页</a></li>
                             <li class="pagenow"><a href="#">1</a></li>
                             <li><a href="#">2</a></li>
