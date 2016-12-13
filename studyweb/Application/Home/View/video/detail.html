@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>学霸养成</title>
+<link href="__PUBLIC__/home/css/public.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/home/css/viewlist.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="header">
+	<div class="mybody">
+    	<a href="#"><img src="__PUBLIC__/home/images/logo.jpg" alt="logo" /></a>
+        <div class="login">
+        	<a href="#">登陆</a> | <a href="#">注册</a>
+        </div>
+        <ul class="nav">
+        	<li><a href="首页.html">首页</a></li>
+            <li><a href="学霸问答.html">学霸问答</a></li>
+            <li><a href="课本点读.html">课本点读</a></li>
+            <li class="navnow"><a href="视频讲解.html">视频讲解</a></li>
+            <li><a href="学霸试卷.html">学霸试卷</a></li>
+            <li><a href="个人中心.html">个人中心</a></li>
+        </ul>
+    </div>
+</div>
+<div class="ad">
+	<div class="mybody">
+    	<img src="__PUBLIC__/home/images/ad.jpg" width="1200" height="100" alt="ad" />
+    </div>
+</div>
+<div class="content">
+<div class="mybody">
+    	<div class="content_con">
+        	<div class="bread"><span>您现在的位置</span> > <a href="首页.html">首页</a> > <a href="#">视频讲解</a> > <a href="#">视频名称</a></div>
+    	  	<div class="left">
+        	<h1>热点视频 <span>hot videoes</span></h1>
+            <ul class="lul">
+            	<ul class="lul">
+            <volist name="hot" id="hot">
+            <if condition="($key eq 0 )">
+                <li>
+                    <span class="lulspan">{$key+1}</span>
+                    <div class="lfirst">
+                        <img src="__PUBLIC__/{$hot.video_img}" width="88" height="59" alt="rd" /> 
+                        <div class="lfright">
+                            <h2><a href="{:U('home/video/detail')}/id/{$hot.video_id}">{$hot.video_title}</a></h2>
+                            <h3>播放次数：{$hot.video_count}</h3>
+                        </div>
+                    </div>
+                </li> 
+            </if>
+            <if condition="($key eq 1) OR ($key eq 2)">
+                <li>
+                    <h2>{$key+1}&nbsp;<a href="{:U('home/video/detail')}/id/{$hot.video_id}">{$hot.video_title}</a></h2>
+                </li>
+            </if>
+            <if condition="($key gt 2) AND ($key lt 9)">
+                <li class="tit2">
+                    <h2>{$key+1}&nbsp;<a href="{:U('home/video/detail')}/id/{$hot.video_id}">{$hot.video_title}</a></h2>
+                </li>
+            </if>
+            </volist>
+            </ul>
+            </ul>
+        </div>
+        </div>
+        <div class="right">
+            	<h1 class="head">视频详情 <span>All video</span></h1>
+            <volist name="video" id="video">
+                <div class="right_con">
+                	<video src="__PUBLIC__/{$video.video}" controls="controls"></video>
+                </div>
+            </volist>
+                <div class="last">
+                    【上一个】: <a href="__MODULE__/video/detail/id/{$front.video_id}">{$front.video_title}</a><br />
+                    【下一个】: <a href="__MODULE__/video/detail/id/{$next.video_id}">{$next.video_title}</a>
+                </div>
+      </div>
+    </div>
+</div>
+    
+</div>
+</div>
+</div>
+<div class="footer">
+	<div class="mybody">
+    <p>版权所有：河北师范大学软件学院 永信指导小组 地址：石家庄市南二环东路20号 冀ICP备字201401号</p>
+    </div>
+</div>
+</body>
+</html>
