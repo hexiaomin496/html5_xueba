@@ -4,6 +4,14 @@ use Think\Controller;
 
 class UserController extends Controller
 {
+    public function __construct() {
+            parent::__construct();
+
+            if (!isLogin()) {
+                $this->error("请先登录", U("Admins/login"));
+            }
+    }
+
 	public function index()
 	{
 		import('Org.Util.Page');
@@ -15,7 +23,7 @@ class UserController extends Controller
         $page->setConfig('first','第一页');
         $page->setConfig('prev','前一页');
         $page->setConfig('next','后一页');
-        
+
         $user = $userModel->page($nowPage.',3')->select();
         $show = $page->show();
         $this->assign('page',$show);
@@ -23,7 +31,7 @@ class UserController extends Controller
 
         $this->display();
 	}
-    
+
     //教师管理
 	public function teacher()
 	{
@@ -63,7 +71,7 @@ class UserController extends Controller
         $condition['question.user_id'] = $id;
     	$userQue = $userQueModel->join('RIGHT JOIN usertab ON question.user_id = usertab.user_id')->where($condition)->select();
 
-        //新建数组 
+        //新建数组
     	$user = array();
     	//计算长度
     	$lenAns = count($userAns);
@@ -76,7 +84,7 @@ class UserController extends Controller
     	for($i = $lenAns,$j = 0; $i < $lenSum; $i++,$j++) {
     		$user[$i] = $userQue[$j];
     	}
-        
+
     	//分页
      	// import('Org.Util.Page');
      	// unset($condition);
@@ -198,12 +206,12 @@ class UserController extends Controller
 		//answer-usertab表关联查询 查询出当前id回答的所有问题
     	$userAnsModel = M('answer');
     	$userAns = $userAnsModel->join('RIGHT JOIN usertab ON answer.user_id = usertab.user_id ')->where($condition)->select();
-    	
+
     	//question-usertab表关联查询 查询出当前id提问的所有问题
         $userQueModel = M('question');
     	$userQue = $userQueModel->join('RIGHT JOIN usertab ON question.user_id = usertab.user_id')->where($condition)->select();
 
-        //新建数组 
+        //新建数组
     	$user = array();
     	//计算长度
     	$lenAns = count($userAns);
@@ -266,7 +274,7 @@ class UserController extends Controller
         $teacherModel = M('teachertab');
         if($teacherModel->where($condition)->delete())
         {
-           $this->success('成功撤职',U('index')); 
+           $this->success('成功撤职',U('index'));
         }else{
             $this->error('撤职失败');
         }
