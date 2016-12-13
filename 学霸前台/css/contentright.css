@@ -113,10 +113,7 @@
 	*margin-top:-32px;}
 .lpimg2{
 	margin-top:20px;}
-.ad{
-	background:#032241;
-	height:100px;
-	}
+
 .tw{
 	background-color:#5ac1df;
 	border:1px solid #5ac1df;}
@@ -134,3 +131,7 @@
 	line-height:18px;
 	text-align:center;
 	margin-left:20px;}
+.ad{
+background:#032241;
+height:100px;
+}
