@@ -29,9 +29,11 @@ class VideoController extends Controller{
 	$this->display();
     }
 
+    //视频详情
     public function detail()
     {
         $condition['video_id'] = I('id');
+        session('videoID',I('id'));
         $videoModel = M('videos');
         $video = $videoModel->where($condition)->select();
         $this->assign('video',$video);
@@ -59,4 +61,34 @@ class VideoController extends Controller{
 
         $this->display();
     } 
+
+    //视频收藏
+    public function collect()
+    {
+        $condition['video_id'] = I('id');
+        // dump($condition);
+        // exit();
+        $collectVideoModel = M('collectvideo');
+        if($collectVideoModel->where($condition)->select()){
+            $this->error('不能重复收藏',U('home/personal/myvideos'));
+        }
+        $videoModel = M('videos');
+        $video = $videoModel->where($condition)->select();
+
+        $data = array(
+                'user_id' => '1',
+                'video_id' => I('id'),
+                'video_title' => $video[0]['video_title'],
+                'video_count' => $video[0]['video_count'],
+                'video_img' => $video[0]['video_img']
+            );
+        //  dump($data);
+        // exit();
+        //$collectvideo = $collectVideoModel->add($data);
+        if($collectVideoModel->add($data)){
+            $this->success('收藏成功',U('home/personal/myvideos'));
+        }else{
+            $this->error('收藏失败');
+        }
+    }
 }
