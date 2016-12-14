@@ -14,10 +14,19 @@
 	margin-bottom:20px;
 	}
 .form tr td{
-	line-herght:34px;
+	line-height:32px;
 	height:34px;
 	}
 .form input[type=text]{
+	width:320px;
+	height:32px;
+	border:1px solid #cfcfcf;
+	border-radius:5px;
+	-moz-border-radius:5px;      /* Gecko browsers */
+    -webkit-border-radius:5px;
+	margin-bottom:10px;
+	}
+.form input[type=password]{
 	width:320px;
 	height:32px;
 	border:1px solid #cfcfcf;
@@ -35,6 +44,7 @@
     -webkit-border-radius:5px;
 	margin-bottom:10px;
 	resize: none;
+	line-height:24px;
 	}
 .form select{
 	width:320px;
@@ -90,6 +100,11 @@
 	border:1px solid #999;
 	float:left;
 	margin-right:18px;
+	}
+.form .videoimg{
+	padding-top:6px;
+	height:42px;
+	line-height:24px;
 	}
 .bookcon{
 	float:left;

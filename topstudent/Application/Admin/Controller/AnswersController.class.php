@@ -3,6 +3,14 @@ namespace Admin\Controller;
 use Think\Controller;
 use Admin\Model\studentquestiontabModel;
 class AnswersController extends Controller {
+   public function __construct() {
+               parent::__construct();
+
+               if (!isLogin()) {
+                   $this->error("请先登录", U("Admins/login"));
+               }
+    }
+
     public function index(){
         $que = M('question');
         
