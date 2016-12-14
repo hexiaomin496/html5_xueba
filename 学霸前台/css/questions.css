@@ -165,3 +165,6 @@
 width:80px;
 height:80px;
 }
+#zan{
+	overflow:auto;
+	cursor:pointer;}

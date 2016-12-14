@@ -13,7 +13,7 @@
 	margin-bottom:50px;
 	overflow:auto;}
 .title2{
-	margin-bottom:20px;
+	margin-bottom:10px;
 	font-size:20px;
 	line-height:30px;
 	border-left:none;
@@ -21,12 +21,12 @@
 	border-bottom:2px solid #2f8abb;
 	padding-bottom:5px;}
 .lp ul{
-	height:35px;}
+	height:40px;}
 .lp ul li{
 	margin-right:40px;
 	float:left;}
 .lp ul li a{
-	font-size:18px;
+	font-size:16px;
 	float:left;
 	line-height:35px;}
 .lpli{color:#2f8abb;}
