@@ -185,19 +185,3 @@ height:100px;
 	background:none;
 	color: #0c2a4c;
 	}
-.right_con video{
-	width:500px;
-	height:390px;}
-.last{
-	width:700px;
-	margin-top:40px;
-	padding-top:30px;
-	margin-bottom:40px;
-	margin-left:30px;
-	border-top:1px solid #ededed;
-	}
-.last a{
-	line-height:28px;
-	color:#808080;
-	}
-.last a:hover{color:#0c2a4c;}

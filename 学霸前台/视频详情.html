@@ -5,6 +5,7 @@
 <title>学霸养成</title>
 <link href="css/public.css" rel="stylesheet" type="text/css" />
 <link href="css/viewlist.css" rel="stylesheet" type="text/css" />
+<link href="css/view.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -74,9 +75,20 @@
         </div>
         <div class="right">
             	<h1 class="head">视频详情 <span>All video</span></h1>
+               
                 <div class="right_con">
-                	<video src="video/1.ogg" controls="controls"></audio>
+                 <h1 class="bt">何大敏上课被打的视频!</h1>
+                <div class="fl">
+                    <div class="ssfl"><img src="images/ssfl.gif" width="15" height="15" alt="ssfl" /><span>所属分类：语文</span></div>
+                    <div class="ssfl ssfl2"><img src="images/sj.gif" width="15" height="15" alt="sj" /><span>时间：2016-01-01 </span></div>
+                    <div class="sc" id="sc">
+       	  		<img src="images/sc.gif" width="12" height="12" alt="sc" id="scimg"/><span id="scspan">收藏</span>
+          	</div>
                 </div>
+                                <p>李月亮放学打人的恶劣行径大公开，何大敏上课被打的视频。李月亮放学打人的恶劣行径大公开，何大敏上课被打的视频。李月亮放学打人的恶劣行径大公开，何大敏上课被打的视频。李月亮放学打人的恶劣行径大公开，何大敏上课被打的视频。</p>
+                	<video src="video/1.ogg" controls="controls"></audio> 
+                </div>
+
                 <div class="last">
                     <a href="#">【上一个】: 何大敏上课被打的视频</a><br />
                     <a href="#">【下一个】: 李月亮放学打人的恶劣行径大公开</a>
@@ -93,5 +105,15 @@
     <p>版权所有：河北师范大学软件学院 永信指导小组 地址：石家庄市南二环东路20号 冀ICP备字201401号</p>
     </div>
 </div>
+<script>
+	var sc=document.getElementById("sc");
+	var scimg=document.getElementById("scimg");
+	var span=document.getElementById("scspan");
+	sc.onclick=function(){
+		scimg.src="images/sch.png";
+		span.innerHTML="已收藏";
+		span.style.color="#2f8abb";
+		}
+</script>
 </body>
 </html>
