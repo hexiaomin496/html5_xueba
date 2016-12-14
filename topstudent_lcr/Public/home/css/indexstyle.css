@@ -1,0 +1,80 @@
+*{
+	font-family:"微软雅黑";
+	color:white;
+	font-size:18px;}
+.header{
+	z-index:1001;
+	position:fixed;}
+.top{
+	background-image:url(../images/banner.jpg);
+	background-color:#72c7e7;
+	height:584px;
+	background-position:top;}
+.top1{
+	position:relative;
+	background-image:url(../images/jczy.png);
+	height:700px;
+	background-position:top;
+	background-repeat:no-repeat;
+	z-index:1000;}
+.top2{
+	margin-top:-127px;
+	position:relative;
+	background-image:url(../images/bg2.jpg);
+	height:700px;
+	background-position:top;
+	background-repeat:no-repeat;
+	z-index:-1;}
+.spjj{
+	margin-top:13%;}
+.spjj div{
+	overflow:auto;}
+.pc{
+	margin-left:1%;
+	float:left;
+	background-image:url(../images/pc.png);
+	padding:21%;
+	background-size:100%;
+	background-repeat:no-repeat;}
+.spjj h1{
+	margin-top:25%;
+	text-align:center;
+	font-size:48px;
+	text-shadow:4px 4px 0px #00568e;}
+.spjj p{
+	margin-top:7%;
+	line-height:180%;}
+.rqq{
+	margin-left:20px;
+	background-image:url(../images/rqq.png);
+	background-size:100%;
+	background-repeat:no-repeat;
+	padding:7% 2%;
+	margin-top:130px;}
+.jczy{
+	margin-top:150px;}
+.jczy p{
+	margin-left:40px;
+	margin-top:30px;
+	line-height:180%;}
+.jczy h1{
+	margin-top:40px;
+	margin-left:40px;
+	font-size:48px;
+	text-shadow:4px 4px 0px #03ace3;}
+.sj{
+	margin-top:30px;
+	height:539px;
+	width:348px;
+	background-image:url(../images/phone.png);
+	background-repeat:no-repeat;}
+.top3{
+	z-index:1000;
+	height:1245px;
+	background-image:url(../images/buttons.png);
+	margin-top:-127px;}
+.ft{
+	text-align:center;
+	margin-top:960px;}
+.ft p{
+	color:#003e4b;}
