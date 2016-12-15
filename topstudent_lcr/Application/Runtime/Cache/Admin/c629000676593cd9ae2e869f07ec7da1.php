@@ -16,7 +16,7 @@
 <div class="container-fluid">
 	<div class="row header">
         <h1>学霸养成后台管理系统<span><?php echo ($_SESSION['adm_username']); ?>&nbsp;<a href="/topstudent/index.php/Admin/Admins/logout">退出</a></a></span></h1>
-    </div>
+    </div>>
 </div>
 <div class="container-fluid">
 	<div class="row content">
@@ -77,23 +77,20 @@
             <div class="rightcon">
             	<img src="/topstudent/Public/<?php echo ($books["book_cover"]); ?>" width="148" alt="" />
                 <div class="bookpage">
-                	<button type="button" class="buttonleft"></button>
+                	<button class="buttonleft"></button>
                     <div class="file-box">  
                         <input type='button' class='add' /> 
-                        <input type="file" name="fileField[]" class="file file1" id="fileField" size="28" onchange="document.getElementById('filefield').value=this.value" accept="image/jpeg,image/gif,image/png" multiple/> 
+                        <input type="file" name="fileField" class="file file1" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" accept="image/jpeg,image/gif,image/png" multiple/> 
                         
                     </div>
                     <div class="bookcon">
                     	
-                        <ul>
-                        <?php
- $a = $books['book_img']; $arr = explode(",",$a); foreach ($arr as $key => $value) { echo "<li><img src='/topstudent/Public$value' alt='' width='97' height='148'></li>"; } ?>
-                        </ul>
+                        <img src="/topstudent/Public/<?php echo ($books["book_img"]); ?>" alt="">
                         <!-- <img src="/topstudent/Public/admin/images/bookpage.jpg" alt="">
                         <img src="/topstudent/Public/admin/images/bookpage.jpg" alt="">
                         <img src="/topstudent/Public/admin/images/bookpage.jpg" alt=""> -->
                     </div>
-                    <button type="button" class="buttonright"></button>
+                    <button class="buttonright"></button>
                 </div>
                 <div class="buttongroup">
                 <form>
@@ -114,7 +111,7 @@
                     </tr>
                     <tr>
                     	<td>分类标签：</td>
-                        <td><select name="book_type">
+                        <td><select name="book_types">
                 			<option ><?php echo ($books["book_type"]); ?></option>
                             <option >语文</option>
                             <option >数学</option>

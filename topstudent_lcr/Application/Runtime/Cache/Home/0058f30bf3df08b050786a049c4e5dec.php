@@ -14,13 +14,13 @@
         <div class="login">
         	<a href="#">登陆</a> | <a href="#">注册</a>
         </div>
-        <ul class="nav">
-        	<li><a href="首页.html">首页</a></li>
-            <li><a href="学霸问答.html">学霸问答</a></li>
-            <li><a href="课本点读.html">课本点读</a></li>
-            <li><a href="视频讲解.html">视频讲解</a></li>
-            <li><a href="学霸试卷.html">学霸试卷</a></li>
-            <li class="navnow"><a href="个人中心.html">个人中心</a></li>
+         <ul class="nav">
+            <li><a href="<?php echo U('Home/index/index');?>">首页</a></li>
+            <li><a href="<?php echo U('Home/learnansq/index');?>">学霸问答</a></li>
+            <li><a href="<?php echo U('Home/book/index');?>">课本点读</a></li>
+            <li><a href="<?php echo U('Home/video/index');?>">视频讲解</a></li>
+            <li><a href="<?php echo U('Home/tests/index');?>">学霸试卷</a></li>
+            <li class="navnow"><a href="<?php echo U('Home/personal/index');?>">个人中心</a></li>
         </ul>
     </div>
 </div>

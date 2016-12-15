@@ -82,7 +82,7 @@
                    
                     <div class="file-box">  
                         <input type='button' class='add' /> 
-                        <input type="file" name="fileField[]" class="file file1" id="fileField" size="28"  accept="image/jpeg,image/gif,image/png" multiple/> 
+                        <input type="file" name="fileField" class="file file1" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" accept="image/jpeg,image/gif,image/png"/> 
                     </div>
                     
                     <div class="bookcon">

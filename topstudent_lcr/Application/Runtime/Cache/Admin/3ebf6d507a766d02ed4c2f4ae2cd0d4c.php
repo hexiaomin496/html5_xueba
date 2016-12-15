@@ -115,7 +115,7 @@
                         <td><a href="<?php echo U('Admin/answers/del');?>/ids/<?php echo ($data["ans_id"]); ?>/idq/<?php echo ($data["que_id"]); ?>">删除</a></td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                     <tr class="table-bottom">
-                        <td><input type="checkbox" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
+                        <td><input type="checkbox" name="id[]" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
                         <td style="text-align:left">全选<button href="#" type="submit" class="button4">批量删除</button></td>
                         <td colspan="5" style="text-align:right">
                             <div class="pagination"><?php echo ($page); ?></div>

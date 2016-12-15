@@ -92,11 +92,6 @@
                     	<td>&nbsp;</td> 
                     </tr>
                     <tr>
-                    	<td>上传封面：</td>
-                        <td><input type="file" name="video_img" class="videoimg" accept="image/jpeg,image/gif,image/png,image/jpg" /><?php echo ($videos["video_img"]); ?></td>
-                    </tr>
-                   
-                    <tr>
                     	<td>分类标签：</td>
                         <td><select name="video_type">
                         	<option><?php echo ($videos["video_type"]); ?></option>

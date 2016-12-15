@@ -83,7 +83,7 @@
             </div>
             <div class="tablegroup">
             	<table class="table">
-                <form action="/topstudent/index.php/Admin/user/fireAll" method="get">
+                <form action="/topstudent/index.php/Admin/user/fireAll" method="post">
                 	<tr>
                     	<th>&nbsp;</th>
                         <th>用户名</th>
@@ -93,7 +93,7 @@
                         <th>操作</th>
                     </tr>
                 <?php if(is_array($teachertab)): $i = 0; $__LIST__ = $teachertab;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$tea): $mod = ($i % 2 );++$i;?><tr>
-                        <td><input type="checkbox" name="id[]" value="<?php echo ($tea["tea_id"]); ?>"></td>
+                        <td><input type="checkbox" name="test" value="<?php echo ($tea["tea_id"]); ?>"></td>
                         <td><?php echo ($tea["user_name"]); ?></td>
                         <td><?php echo ($tea["tea_score"]); ?></td>
                         <td class="red"><?php echo ($tea["tea_credit"]); ?></td>
@@ -101,7 +101,7 @@
                         <td><a href="<?php echo U('Admin/user/fire');?>/id/<?php echo ($tea["tea_id"]); ?>">撤职</a></td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                     <tr class="table-bottom">
-                    	<td><input type="checkbox" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
+                    	<td><input type="checkbox" name="test" value="" onclick="if(this.checked==true) { checkAll('test'); } else { clearAll('test'); }"></td>
                         <td style="text-align:left">全选<button type="submit" class="button4">批量撤职</button></td>
                         <td colspan="4" style="text-align:right">
                         <?php echo ($page); ?>

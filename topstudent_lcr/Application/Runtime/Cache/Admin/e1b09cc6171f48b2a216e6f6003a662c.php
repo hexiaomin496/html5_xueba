@@ -115,7 +115,7 @@
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                     
                     <tr class="table-bottom">
-                    	 <td><input type="checkbox" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
+                    	 <td><input type="checkbox" name="id[]" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
                         <td style="text-align:left">全选<button type="submit" class="button4">批量删除</button></td>
                         <td colspan="4" style="text-align:right">
                         	<!-- <ul class="page">
@@ -128,7 +128,7 @@
                             	<li><a href="#">下一页</a></li>
                                 <li>共5页/48条数据 转到<input type="text" class="pageinput" placeholder="1">页</li>
                             </ul> -->
-                            <div class="pagination"><?php echo ($page); ?></div>
+                            <?php echo ($page); ?>
                         </td>
                     </tr>
                     </form>

@@ -148,6 +148,11 @@ height:100px;
 	color:#fff;
 	font-weight:normal;
 	}
+.page{
+	float:right;  /*加*/
+	margin:20px 4px 30px 0px;/*加*/
+	overflow:auto;
+	width:800px;}
 .page ul{
 	float:right;
 	margin:20px 4px 30px 0px;

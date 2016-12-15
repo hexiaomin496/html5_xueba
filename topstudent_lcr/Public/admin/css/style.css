@@ -97,9 +97,8 @@
 	}
 .buttongroup{
 	margin-top:16px;
-
 	}
-.buttongroup button{
+.buttongroup a{
 	display:inline-block;
 	background:#048992;
 	height:34px;
@@ -112,9 +111,12 @@
 	-moz-border-radius:5px;      /* Gecko browsers */
     -webkit-border-radius:5px;
 	padding:0 26px;
-
 	}
-
+.buttongroup a:hover{
+	background:#03757d;
+	color:#fff;
+	text-decoration:none;
+	}
 .button1{
 	margin-right:5px;
 		}
@@ -136,7 +138,7 @@
 	}
 /********************表格***********************/
 .tablegroup{
-	margin-top:70px;
+	margin-top:20px;
 	margin-bottom:0px;
 	}
 .table{

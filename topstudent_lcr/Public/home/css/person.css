@@ -72,8 +72,14 @@
 	height:50px;
 	line-height:50px;
 	}
-.bread a{font-size:12px;}
-
+.bread a{
+	font-size:12px;
+	color:#333;
+	}
+.bread a:hover{
+	color:#000;
+	text-decoration:underline;
+	}
 .personal_form_right{
 	width:970px;
 	margin-left:25px;
@@ -97,21 +103,12 @@
 	border-left:4px solid #2f8abb;
 	text-indent:10px;
 }
-.file-box input[type=submit]{
-	margin-top: 10px;
-	width:100px;
-	height:32px;
-	text-align: center;
-	background:#2f8abb;
-	color:#fff;
-	font-size:14px;
-	cursor:pointer;
-	}
 .img{
 	width:654px;
 	text-align:center;
 	float:left;
 	}
+
 .img p{
 	margin-top:20px;
 	color:#666;
@@ -138,7 +135,7 @@ textarea{
 	border:1px solid #ccc;
 	padding:6px;
 	}
-.form2 input[type="submit"]{
+.form1 input[type="submit"]{
 	width:120px;
 	height:40px;
 	background:#2f8abb;
@@ -167,6 +164,16 @@ textarea{
 	text-align:left;
 	text-indent:2em;
 	color:#5cb85c;
+	}
+.file-box input[type=submit]{
+	margin-top:6px;
+	width:100px;
+	height:32px;
+	background:#2f8abb;
+	color:#fff;
+	font-size:15px;
+	margin-left:0px;
+	cursor:pointer;
 	}
 /**********************广告************************/
 .ad{

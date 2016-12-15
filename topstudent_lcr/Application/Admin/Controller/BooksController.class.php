@@ -3,6 +3,8 @@
    use Think\Controller;
    class BooksController extends Controller{
 
+   	
+
      //各个课本浏览函数
    	 public function index(){
    	 
@@ -44,7 +46,6 @@
 
      //添加课本封面后的添加课本信息函数
    	 public function create(){
-   	 	
         $booksModel=D("books");
         $id=$_GET['book_id'];
         $books=$booksModel->find($id);
@@ -55,7 +56,7 @@
     }
 
     //增加或者编辑后的保存课本信息函数
-    /*public function save(){
+    public function save(){
 
         if(IS_POST){
         $upload = new \Think\Upload();// 实例化上传类
@@ -92,56 +93,7 @@
           }
          }
        }
-     }*/
-      public function save(){
-
-        if(IS_POST){
-        $upload = new \Think\Upload();// 实例化上传类
-        $upload->maxSize=3145728 ;// 设置附件上传大小
-        $upload->exts=array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $upload->rootPath  = THINK_PATH; // 设置附件上传根目录
-        $upload->savePath  ='../Public/uploads/'; // 设置附件上传（子）目录
-        // 上传文件 
-        $info   =   $upload->upload();
-       
-        if(!$info) {// 上传错误提示错误信息
-            $this->error($upload->getError());
-        }
-        else{// 上传成功
-             //$this->success('上传成功！');
-        	//$path = '/uploads/';
-            foreach($info as $file){
-            	$path = substr($file['savepath'], 9);
-             	$string = $path.$file['savename'];
-           		$i.=$string.',';
-
-          }
-          $a = substr($i, 0, -1) ;
-
-            //创建模型
-            $bookModel = M('books');
-            //组织数据
-            $data=$bookModel->create();
-           
-            //设置thumb字段属性(目录+名字)
-           $data['book_img']=$a;
-             
-            // $bookModel->add($data);
-           
-                     
-          // $model=M("Books");
-          // $model->create();
-          // dump($data);
-          if($bookModel->save($data)){
-            $this->success("添加成功",U("Books/index"));
-          }
-          else{
-            $this->error("添加失败",U("Books/create"));
-          }
-         }
-       }
      }
-
       
      //课本封面上传函数    
    	 public function  doAdd(){
@@ -198,7 +150,6 @@
      // }
 
        public function edit(){
-       	
          $booksModel=D("books");
          $id=$_GET['id'];
          $books=$booksModel->find($id);
@@ -253,7 +204,6 @@
 
         //日期查询
        public function query(){
-       	
         $booksModel = M('books');
 
         //$starttime = strtotime(I('post.date1'));

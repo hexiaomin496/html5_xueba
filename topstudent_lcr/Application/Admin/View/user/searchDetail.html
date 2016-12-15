@@ -93,7 +93,7 @@
                     </tr>
                 <volist name="user" id="user">
                     <tr>
-                    	<td><input type="checkbox" name="id[]" value=""></td>
+                    	<td><input type="checkbox" name="test" value=""></td>
                         <td>{$user.user_username}</td>
                         <td>{$user.user_score}</td>
                         <td>{$user.user_status}</td>
@@ -102,7 +102,7 @@
                     </tr>
                 </volist>              
                     <tr class="table-bottom">
-                    	<td><input type="checkbox" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
+                    	<td><input type="checkbox" name="test" value="" onclick="if(this.checked==true) { checkAll('test'); } else { clearAll('test'); }"></td>
                         <td style="text-align:left">全选<button class="button4">批量封禁</button></td>
                         <td colspan="4" style="text-align:right">
                             {$page}

@@ -104,7 +104,7 @@
                     </tr>
                     <volist name="list" id="data">
                     <tr>
-                        <td><input type="checkbox" name="id[]" value=""></td>
+                        <td><input type="checkbox" name="test" value=""></td>
                         <td title="{$data.content}"><a target="_blank" href="{:U('Admin/questions/edit')}/id/{$data.que_id}" title="{$data.content}">{$data.content}</a></td>
                         <td>{$data.publish}</td>
                         <td class="green">{$data.status}</td>
@@ -113,7 +113,7 @@
                     </tr>
                     </volist>
                     <tr class="table-bottom">
-                        <td><input type="checkbox" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
+                        <td><input type="checkbox" name="test" value="" onclick="if(this.checked==true) { checkAll('test'); } else { clearAll('test'); }"></td>
                         <td style="text-align:left">全选<a href="#" class="button4">批量删除</a></td>
                         <td colspan="4" style="text-align:right">
                             <div class="pagination">{$page}</div>

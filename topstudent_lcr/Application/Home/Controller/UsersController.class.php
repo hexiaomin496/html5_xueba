@@ -1,8 +1,9 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-
-class UsersController extends Controller{	
+class UsersController extends Controller {
+   
+    //管理员登录
 	public function login(){	
 		if(IS_POST){	
 			$usertab = M('usertab');
@@ -12,13 +13,16 @@ class UsersController extends Controller{
 				);
 			
 			$result = $usertab->where($condition)->count();
-			$z = $usertab->where($condition)->find();
-			$a = $z['user_id'];
-			
+			$id = $usertab->where($condition)->find();
+			$ids = $id['user_id'];
 			if($result>0){	
 				session("user_username",I("post.username"));
-				session("userid",$a);
-				$this->success("欢迎回来~",U("personal/index"));
+				session("id",$ids);
+				//$idss = $_SESSION['id'];
+				//var_dump($idss);
+				$this->success('欢迎回来~',U("personal/index"));
+				//$idss = $_SESSION['id'];
+    			//var_dump($idss);
 			}
 			else{	
 				$this->error("用户名或密码不正确");
@@ -29,7 +33,7 @@ class UsersController extends Controller{
 		}
 	}
 
-	public function register(){	
+public function register(){	
 		$this->display();
 	}
 
@@ -51,10 +55,10 @@ class UsersController extends Controller{
 			}
 		}
 		$user->data($condition)->add();
-		$z = $user->where($condition)->find();
-		$a = $z['user_id'];
+		$id = $user->where($condition)->find();
+		$ids = $id['user_id'];
 		session("user_username",I("post.username"));
-		session("userid",$a);
+		session("id",$ids);
 		$this->success("注册成功",U("personal/index"));
 
 		
@@ -66,12 +70,8 @@ class UsersController extends Controller{
 	public function logout(){	
 		session('[destroy]');
 		//$this->display();
-		redirect(U('login'),2,'正在退出...');
+		redirect(U('users/login'),2,'exit...');
 	}
 	
-
-
-
-
+	
 }
-?>

@@ -109,7 +109,6 @@
                     </tr>
                    <?php if(is_array($videos)): $i = 0; $__LIST__ = $videos;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vi): $mod = ($i % 2 );++$i;?><tr>
                         <td><input type="checkbox" name="id[]" value="<?php echo ($vi["video_id"]); ?>"></td>
-
                         <td><?php echo ($vi["video_title"]); ?></td>
                         <td><?php echo ($vi["video_publish"]); ?></td>
                         <td><?php echo ($vi["video_type"]); ?></td>
@@ -118,7 +117,7 @@
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                     	
                     <tr class="table-bottom">
-                    	<td><input type="checkbox" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
+                    	<td><input type="checkbox" name="id[]" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
                         <td style="text-align:left">全选<button type="submit" class="button4">批量删除</button></td>
                         <td colspan="4" style="text-align:right">
                         	<div class="pagination"><?php echo ($page); ?></div>

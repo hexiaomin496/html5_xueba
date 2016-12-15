@@ -114,7 +114,7 @@
                         <td><a href="<?php echo U('Admin/user/delete');?>/id/<?php echo ($user["ans_id"]); ?>">删除</a></td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                     <tr class="table-bottom">
-                    	<td><input type="checkbox" value="" onclick="if(this.checked==true) { checkAll('test[]'); } else { clearAll('test[]'); }"></td>
+                    	<td><input type="checkbox" name="test[]" value="" onclick="if(this.checked==true) { checkAll('test[]'); } else { clearAll('test[]'); }"></td>
                         <td style="text-align:left">全选<button type="submit" class="button4" >批量删除</button></td>
                         <td colspan="4" style="text-align:right">
                         	<!-- <ul class="page">

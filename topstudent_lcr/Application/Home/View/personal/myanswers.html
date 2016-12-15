@@ -14,13 +14,13 @@
         <div class="login">
         	<a href="#">登陆</a> | <a href="#">注册</a>
         </div>
-        <ul class="nav">
-        	<li><a href="首页.html">首页</a></li>
-            <li><a href="学霸问答.html">学霸问答</a></li>
-            <li><a href="课本点读.html">课本点读</a></li>
-            <li><a href="视频讲解.html">视频讲解</a></li>
-            <li><a href="学霸试卷.html">学霸试卷</a></li>
-            <li class="navnow"><a href="个人中心.html">个人中心</a></li>
+         <ul class="nav">
+            <li><a href="{:U('Home/index/index')}">首页</a></li>
+            <li><a href="{:U('Home/learnansq/index')}">学霸问答</a></li>
+            <li><a href="{:U('Home/book/index')}">课本点读</a></li>
+            <li><a href="{:U('Home/video/index')}">视频讲解</a></li>
+            <li><a href="{:U('Home/tests/index')}">学霸试卷</a></li>
+            <li class="navnow"><a href="{:U('Home/personal/index')}">个人中心</a></li>
         </ul>
     </div>
 </div>
@@ -32,79 +32,36 @@
 
 <div class="content">
 	<div class="mybody">
-    	<div class="bread"><span>您现在的位置：</span><a href="首页.html">首页</a> > <a href="#">个人中心</a></div>
+    	<div class="bread"><span>您现在的位置：</span><a href="{:U('Home/personal/index')}">首页</a> > <a href="{:U('Home/personal/index')}">个人中心</a></div>
 		<!--个人中心left-->
         <div class="personal_left">
         	<div class="user">
-            	<a href="#"><img src="__PUBLIC__/home/images/user_c.jpg" width="157" height="157" alt="user" /></a>
-                <p>何大敏</p>
+            	<a href="#"><img src="__PUBLIC__/{$lists.head_picture}" width="157" height="157" alt="user" /></a>
+                <p>{$lists.user_username}</p>
             </div>
             <ul class="left_nav">
                     <li><a href="{:U('Home/personal/index')}">首页</a></li>
                     <li><a href="{:U('Home/personal/myquestions')}">我的问题</a></li>
                     <li class="left_nav_now"><a href="{:U('Home/personal/myanswers')}">我的回答</a></li>
-                    <li><a href="{:U('Home/personal/myvideos')}">视频收藏</a></li>
-                    <li><a href="{:U('Home/personal/mytests')}">试卷收藏</a></li>
+                    <li><a href="{:U('Home/video/index')}">视频收藏</a></li>
+                    <li><a href="{:U('Home/tests/index')}">试卷收藏</a></li>
                     <li><a href="{:U('Home/personal/myself')}">个人管理</a></li>
                     
                     <li><a href="{:U('Home/personal/certeacher')}">教师认证</a></li>
-            </ul>       
+            </ul>        
         </div>
         <!--个人中心right-->
         <div class="personal_form_right form_bg">
         <h1>我的回答<span> My answer</span></h1>
+            <volist name="list" id="data">
         	<div class="question">
-            	<h2><a href="问答详情.html" target="_blank">这必须是一个感叹句呀！！</a></h2>
-                <h3><span>来自问题：</span>心里别提有多高兴了是不是感叹句?</h3>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
+            	<h2><a href="{:U('Home/personal/ansdetails')}/aid/{$data.ans_id}" target="_blank">{$data.ans_content}</a></h2>
+                <h3><span>来自问题：</span>{$data.que_content}</h3>
+                <h4>{$data.ans_publish}&nbsp;&nbsp;&nbsp;&nbsp;回答：{$data.ans_count}&nbsp;&nbsp;&nbsp;&nbsp;{$data.que_view}人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>{$data.pag}</span></h4>
             </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">不是，盐放多了会变得更咸。</a></h2>
-                <h3><span>来自问题：</span>腌萝卜咸菜放的盐越多萝卜就变得越软是吗</h3>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">这个是特产呀，你去找当地的老乡们学习吧，不过很难吃</a></h2>
-                <h3><span>来自问题：</span>四川的郫县豆辨腌肉怎么做</h3>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">哇这个题好难呀，我不会耶同求答案么么哒。</a></h2>
-                <h3><span>来自问题：</span>已知函数f(x)=x²+2ax+2,x∈[-5,5],求y=f(x)的最小值</h3>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">是小兰的妈妈吗</a></h2>
-                <h3><span>来自问题：</span>柯南M09特典中那个律师的名字好耳熟。是...?</h3>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">起来说话，别跪下</a></h2>
-                <h3><span>来自问题：</span>跪求那些年 我们一起追的女孩rap说唱链接</h3>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">我家宝宝不爱吃南瓜，他爱吃西瓜</a></h2>
-                <h3><span>来自问题：</span>南瓜可以和鲫鱼同时煮粥给宝宝吃吗?</h3>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">温水煮扇贝，加上粉丝和蒜泥，就超级好吃啦！</a></h2>
-                <h3><span>来自问题：</span>蒸扇贝的做法，蒸扇贝怎么做好吃，蒸扇贝的家常做法</h3>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
+            </volist>
             <div class="page">
-            	<ul>
-                	<li class="up"><a href="#">上一页</a></li>
-                    <li class="now">1</li>
-                    <li class="num"><a href="#">2</a></li>
-                    <li class="num"><a href="#">3</a></li>
-                    <li class="num"><a href="#">4</a></li>
-                    <li class="num"><a href="#">5</a></li>
-                    <li>...</li>
-                    <li class="num"><a href="#">8</a></li>
-                    <li class="up"><a href="#">下一页</a></li>
-                </ul>
+            	{$page}
     		</div>
 
         </div>

@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>学霸养成</title>
-<link href="/topstudent/Public/home/css/public.css" rel="stylesheet" type="text/css" />
-<link href="/topstudent/Public/home/css/login.css" rel="stylesheet" type="text/css" />
+<link href="/all/topstudent/Public/home/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/all/topstudent/Public/home/css/login.css" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -12,12 +12,12 @@
 <body>
 <div class="header">
 	<div class="mybody">
-    	<a href="#"><img src="/topstudent/Public/home/images/logo.jpg" alt="logo" /></a>
+    	<a href="#"><img src="/all/topstudent/Public/home/images/logo.jpg" alt="logo" /></a>
         <div class="login">
         	<a href="<?php echo U(login);?>">登录</a> | <a href="<?php echo U(register);?>">注册</a>
         </div>
         <ul class="nav">
-        	<li><a href="首页.html">首页</a></li>
+        	<li><a href="<?php echo U('Home/index/index');?>">首页</a></li>
             <li><a href="学霸问答.html">学霸问答</a></li>
             <li><a href="课本点读.html">课本点读</a></li>
             <li><a href="视频讲解.html">视频讲解</a></li>
@@ -28,7 +28,7 @@
 </div>
 <div class="ad">
 	<div class="mybody">
-    	<img src="/topstudent/Public/home/images/ad.jpg" width="1200" height="100" alt="ad" />
+    	<img src="/all/topstudent/Public/home/images/ad.jpg" width="1200" height="100" alt="ad" />
     </div>
 </div>
 

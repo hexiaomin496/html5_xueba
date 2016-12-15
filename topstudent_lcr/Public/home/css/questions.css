@@ -152,3 +152,48 @@
 	color:#2f8abb;
 	text-decoration:none;
 	}
+.qtop p{
+	width:700px;
+	overflow:auto;
+	line-height:24px;
+	padding:20px;
+	color:#666;}
+
+.contentul .text{
+	resize:none;
+	width:730px;
+	height:84px;
+	font-size:14px;
+	line-height:24px;
+	border:1px solid #ededed;
+	padding:4px;
+	border-radius:5px;
+	-moz-border-radius:5px;      /* Gecko browsers */
+    -webkit-border-radius:5px;
+	}
+.contentul h3{
+	margin-bottom:14px;
+	font-weight:normal;
+	font-size:18px;
+	}
+.contentul .answerbtn{
+	float:right;
+	width:120px;
+	height:40px;
+	background:#2f8abb;
+	color:#fff;
+	font-size:18px;
+	margin-top:10px;
+	cursor:pointer;
+	}
+.headimg{
+	border-radius:80px;
+-moz-border-radius:80px; 
+-webkit-border-radius:80px;
+width:80px;
+height:80px;
+}
+#zan{
+	overflow:auto;
+	cursor:pointer;}
+

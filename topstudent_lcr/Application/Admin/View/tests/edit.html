@@ -77,15 +77,31 @@
                 <form action="{:U('Admin/tests/save')}" method="post" id="myform" name="myform" enctype="multipart/form-data">
             	<img src="__PUBLIC__/{$tests.test_cover}" width="148" alt="" />
                 <div class="bookpage">
-                	<button class="buttonleft"></button>
+                	<button type="button" class="buttonleft"></button>
                     <div class="file-box">  
                         <input type='button' class='add' /> 
-                        <input type="file" name="fileField" class="file file1" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" accept="image/jpeg,image/gif,image/png"/> 
+                        <input type="file" name="fileField[]" class="file file1" id="fileField" size="28" onchange="document.getElementById('filefield').value=this.value" accept="image/jpeg,image/gif,image/png" multiple/> 
+                        
                     </div>
                     <div class="bookcon">
-                    	<img src="__PUBLIC__/{$tests.test_img}" alt="">
+                        
+                        <ul>
+                        <?php
+                            $a = $books['book_img'];
+                            $arr = explode(",",$a);
+
+                            foreach ($arr as $key => $value) {
+                                
+                                echo "<li><img src='__PUBLIC__$value' alt='' width='97' height='148'></li>";
+                            }
+                        ?>
+                        </ul>
+                        <!-- <img src="__PUBLIC__/admin/images/bookpage.jpg" alt="">
+                        <img src="__PUBLIC__/admin/images/bookpage.jpg" alt="">
+                        <img src="__PUBLIC__/admin/images/bookpage.jpg" alt=""> -->
                     </div>
-                    <button class="buttonright"></button>
+                    <button type="button" class="buttonright"></button>
+
                 </div>
                 <div class="buttongroup">
                 <table class="form">

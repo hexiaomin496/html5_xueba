@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/home/css/public.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/home/css/projectlist.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/home/css/contentright.css" rel="stylesheet" type="text/css" />
+<title>学霸问答</title>
+</head>
+<body>
+<div class="header">
+	<div class="mybody">
+    	<a href="#"><img src="__PUBLIC__/home/images/logo.jpg" alt="logo" /></a>
+        <div class="login">
+        	<a href="#">登陆</a> | <a href="#">注册</a>
+        </div>
+        <ul class="nav">
+            <li><a href="{:U('Home/index/index')}">首页</a></li>
+            <li class="navnow"><a href="{:U('Home/learnansq/index')}">学霸问答</a></li>
+            <li><a href="{:U('Home/book/index')}">课本点读</a></li>
+            <li><a href="{:U('Home/video/index')}">视频讲解</a></li>
+            <li><a href="{:U('Home/tests/index')}">学霸试卷</a></li>
+            <li><a href="{:U('Home/personal/index')}">个人中心</a></li>
+        </ul>
+    </div>
+</div>
+<div class="ad">
+	<div class="mybody">
+    	<img src="__PUBLIC__/home/images/ad.jpg" width="1200" height="100" alt="ad" />
+    </div>
+</div>
+<div class="content">
+<div class="mybody">
+
+	<div class="bread"><span>学霸养成</span> > <a href="#">学霸问答</a></div>
+    <div class="right">
+    	<div class="righttop">
+        	<h1 class="title title2">我的问答<a href="#" class="ckgd"></a></h1>
+            <div class="xzdr">
+       	    	<img src="__PUBLIC__/home/images/dr1.jpg" width="150" height="190" alt="dr" class="xzdrimg"/>
+                <div class="xzright">
+                <div class="drname">
+                <h1>{$lists.user_username}</h1>
+                <span>
+                    <?php
+                $str1 = $listss['score'];
+                $str2 = $str1/100;
+                echo LV.intval($str2);
+                ?>
+                </span>
+                </div>
+                <a href="#"><h3 class="tw">我的提问：{$listss.ask_count}</h3></a>
+                <a href="#"><h3 class="hd2">我的回答：{$listss.reply_count}</h3></a>
+                </div>
+            </div>
+      </div>
+    	<div class="righttop righttop2">
+        	<h1 class="title">热门问题<a href="#" class="ckgd">更多&nbsp;>></a></h1>
+            <ul class="topul">
+        	<volist name="llist" id="data">
+               <li><a href="{:U('Home/learnansq/hotlquedetails')}/qid/{$data.que_id}">{$data.content}</a><span><?php $str = $data['publish']; echo substr($str,5,5); ?></span></li>
+            </volist>
+        </ul>
+        </div>
+    </div>
+    <div class="left">
+    	<div class="search">
+    	<form action="{:U('Home/learnansq/search')}" method="post">
+            <input type="text" value="" class="searchtext" name="search" id="search" placeholder="请输入搜索关键词">
+           <button type="submit" value="开始搜索" class="searchbutton">开始搜索</button>
+           <a href="{:U('Home/learnansq/ask')}" value="我要提问" class="searchbutton searchbutton2">我要提问</a>
+        </form>
+           
+
+        
+   		</div>
+        <div class="lp">
+    	<ul>
+    		<li><a href="{:U('Home/learnansq/primary')}" class="lpli">小学</a></li>
+            <li><a href="{:U('Home/learnansq/middle')}" class="lpli">初中</a></li>
+            <li><a href="{:U('Home/learnansq/chinese')}" class="lpli">语文</a></li>
+            <li><a href="{:U('Home/learnansq/math')}" class="lpli">数学</a></li>
+            <li><a href="{:U('Home/learnansq/english')}" class="lphover">英语</a></li>
+    	</ul>
+        </div>
+        <ul class="proul">
+        <volist name="list" id="data">
+        	<li>
+            	<div class="litop">
+                	<h1><a href="{:U('Home/learnansq/lquedetails')}/qid/{$data.que_id}" target="_blank">{$data.title}</a></h1>
+                    <h2><span class="">提问者：{$data.que_username}</span><span class="tiw">问题分类：{$data.pag}</span><span class="tiw">回答：{$data.ans_count}</span><span class="tiw">{$data.que_view}人看过</span></h2>
+                </div>
+                <p>{$data.content}</p>
+                <div class="time">
+               	    	<img src="__PUBLIC__/home/images/time.gif" width="14" height="14" alt="time"/> 
+                        <span class="sj">时间：2016-01-01</span>
+                </div>
+            </li>
+        </volist>
+        </ul>
+        <div class="page">
+            	{$page}
+    </div>
+    </div>
+    
+</div>
+</div>
+
+<div class="footer">
+	<div class="mybody">
+    <p>版权所有：河北师范大学软件学院 永信指导小组 地址：石家庄市南二环东路20号 冀ICP备字201401号</p>
+    </div>
+</div>
+</body>
+</html>

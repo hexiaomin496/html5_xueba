@@ -2,9 +2,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 class QuestionsController extends Controller {
-	
     public function index(){
-    	
       $Model = M('question'); // 实例化questions对象
      
       $count = $Model->count();// 查询满足要求的总记录数
@@ -32,7 +30,6 @@ class QuestionsController extends Controller {
 		$this->display();
 	}*/
 	public function edit($id){
-		
         //获取id
         //$id = I('que_id');
         //获取数据
@@ -59,7 +56,6 @@ class QuestionsController extends Controller {
         }
     }
     public function query(){
-    	
         $Model = M('question');
 
         $starttime1 = I('post.date1');
@@ -92,7 +88,6 @@ class QuestionsController extends Controller {
         $this->display();
     }
     public function search(){ 
-    	
         $Model = M('question');
         $value = I('post.search_value');
 

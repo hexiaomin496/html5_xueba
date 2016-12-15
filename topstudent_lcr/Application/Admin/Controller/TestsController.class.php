@@ -2,9 +2,16 @@
    namespace Admin\Controller;
    use Think\Controller;
    class TestsController extends Controller{
-   	 public function index(){
-   	 	
-   	    $testsModel=M("tests");
+
+     public function __construct() {
+    parent::__construct();
+    
+    if (!isLogin()) {
+      $this->error("请先登录", U("Admins/login"));
+    }
+  }
+     public function index(){
+        $testsModel=M("tests");
           //导入分页
          import('Org.Util.Page');
           $count=$testsModel->count();
@@ -20,27 +27,26 @@
           $this->assign('page',$show);
           $this->assign('tests',$tests);
         /*  $count = $testsModel->count();// 查询满足要求的总记录数
-		 $Page = new \Think\Page($count,4);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+     $Page = new \Think\Page($count,4);// 实例化分页类 传入总记录数和每页显示的记录数(25)
 
-	      $Page->setConfig('header','<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
-	      $Page->setConfig('prev','上一页');
-	      $Page->setConfig('next','下一页');
-	      $Page->setConfig('last','末页');
-	      $Page->setConfig('first','首页');
-	      $Page->setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
+        $Page->setConfig('header','<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
+        $Page->setConfig('prev','上一页');
+        $Page->setConfig('next','下一页');
+        $Page->setConfig('last','末页');
+        $Page->setConfig('first','首页');
+        $Page->setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%');
 
-	      $show = $Page->show();// 分页显示输出
-	        // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
-	      $list = $testsModel->order('test_id')->limit($Page->firstRow.','.$Page->listRows)->select();
-	    
-	      $this->assign('list',$list);// 赋值数据集
-	      
-	      $this->assign('page',$show);// 赋值分页输出*/
+        $show = $Page->show();// 分页显示输出
+          // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list = $testsModel->order('test_id')->limit($Page->firstRow.','.$Page->listRows)->select();
+      
+        $this->assign('list',$list);// 赋值数据集
+        
+        $this->assign('page',$show);// 赋值分页输出*/
           $this->display();
-   	 }
+     }
 
-   	 public function create(){
-   	 	
+     public function create(){
         $testsModel=D("tests");
         $id=$_GET['test_id'];
         $tests=$testsModel->find($id);
@@ -57,23 +63,40 @@
         $upload->maxSize=3145728 ;// 设置附件上传大小
         $upload->exts=array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
         $upload->rootPath  = THINK_PATH; // 设置附件上传根目录
-        $upload->savePath  ='../Public/upload/'; // 设置附件上传（子）目录
+        $upload->savePath  ='../Public/uploads/'; // 设置附件上传（子）目录
         // 上传文件 
         $info   =   $upload->upload();
-        // dump($info);
+       
         if(!$info) {// 上传错误提示错误信息
             $this->error($upload->getError());
-        }else{// 上传成功
+        }
+        else{// 上传成功
              //$this->success('上传成功！');
+          //$path = '/uploads/';
+            foreach($info as $file){
+              $path = substr($file['savepath'], 9);
+              $string = $path.$file['savename'];
+              $i.=$string.',';
+
+          }
+          $a = substr($i, 0, -1) ;
+          // print_r($a);
+          // exit();
+
             //创建模型
             $testModel = M('tests');
             //组织数据
             $data=$testModel->create();
            
             //设置thumb字段属性(目录+名字)
-           $data['test_img']=$info['fileField']['savepath'].$info['fileField']['savename'];
+           $data['test_img']=$a;
              
+            // $bookModel->add($data);
            
+                     
+          // $model=M("Books");
+          // $model->create();
+          // dump($data);
           if($testModel->save($data)){
             $this->success("添加成功",U("Tests/index"));
           }
@@ -83,7 +106,6 @@
          }
        }
      }
-     
       public function  doAdd(){
       $upload= new \Think\Upload();//实例化上传类
       $upload->maxsize=3145728;
@@ -105,7 +127,7 @@
             $data['test_cover']=$info['thumb']['savepath'].$info['thumb']['savename'];
             // $data['test_publish']=$info['thumb']['savetime'];
             $z = $testsModel->add($data);
-            //dump($data);
+          
             if($z){
                 $this->success('数据添加成功', U('create',array('test_id'=>$z)));
             }else{
@@ -116,8 +138,7 @@
      }
 
 
-   	  public function edit(){
-   	  	
+      public function edit(){
          $testsModel=D("tests");
          $id=$_GET['id'];
          $tests=$testsModel->find($id);
@@ -150,30 +171,29 @@
        }
 
         //批量删除
-      	public function deleteAll(){	
-       		$testsModel = M('tests');
-       		$id = $_GET['id'];
-       		$i=0;
-       		foreach ($id as $key => $value) {
-       			$it=$value;
-       			//$it=(int)$it;
-       			$where = 'test_id='.$it;
-       			$list[$i]=$testsModel->where($where)->delete();
-       			$i++;
-       		}
-       		
-       		  
-       		if($list){	
-       			$this->success("成功删除{$i}条",U('index'));
-       		}
-       		else{	
-       			$this->error('删除失败');
-       		}
+        public function deleteAll(){  
+          $testsModel = M('tests');
+          $id = $_GET['id'];
+          $i=0;
+          foreach ($id as $key => $value) {
+            $it=$value;
+            //$it=(int)$it;
+            $where = 'test_id='.$it;
+            $list[$i]=$testsModel->where($where)->delete();
+            $i++;
+          }
+          
+            
+          if($list){  
+            $this->success("成功删除{$i}条",U('index'));
+          }
+          else{ 
+            $this->error('删除失败');
+          }
        }
 
         //日期查询
        public function query(){
-       	
         $testsModel = M('tests');
 
         //$starttime = strtotime(I('post.date1'));

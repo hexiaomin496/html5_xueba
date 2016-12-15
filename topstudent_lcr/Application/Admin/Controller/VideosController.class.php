@@ -2,9 +2,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 class VideosController extends Controller{
-
 	public function index(){
-		
 		$videosModel=M('videos');
 		$videos=$videosModel->select();
 
@@ -30,7 +28,6 @@ class VideosController extends Controller{
 	}
 
 	public function create(){
-		
 		$id=I('video_id');
 		$video = M('videos')->find($id);
 		$this->assign('newVideos',$video);
@@ -39,31 +36,9 @@ class VideosController extends Controller{
 	}
 	public function save(){	
 		if (IS_POST) {
-        $upload = new \Think\Upload();// 实例化上传类
-        $upload->maxSize=3145728 ;// 设置附件上传大小
-        $upload->exts=array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $upload->rootPath  = THINK_PATH; // 设置附件上传根目录
-        $upload->savePath  ='../Public/Images/'; // 设置附件上传（子）目录
-       
-        // 上传文件 
-        $info   =   $upload->upload();
-        // dump($info);
-        if(!$info) {// 上传错误提示错误信息
-            $this->error($upload->getError());
-        }else{// 上传成功
-             //$this->success('上传成功！');
-            //创建模型
-            $videoModel = M('videos');
-            //组织数据
-            $data=$videoModel->create();
-           
-            //设置thumb字段属性(目录+名字)
-           $data['video_img']=$info['video_img']['savepath'].$info['video_img']['savename'];
-
-           $b = $videoModel->save($data);
-
-			if($b){
-
+			$model = M("Videos");
+			$model->create();
+			if($model->save()){	
 				$this->success("添加成功",'index');
 			}
 			else{	
@@ -72,7 +47,7 @@ class VideosController extends Controller{
 		}
 	}
 	
-}
+
 	
 	public function store(){
 		$videos=M('videos');
@@ -93,7 +68,7 @@ class VideosController extends Controller{
 				//然后把附件的路径名或得到，存入$_POST
 				if(!empty($_FILES)){
 					$config = array(
-						'rootPath' => './Public/' ,//保存根路径
+						'rootPath' => './public/' ,//保存根路径
 						'savePath' => 'Video/',//保存路径
 					 );
 
@@ -122,7 +97,7 @@ class VideosController extends Controller{
 					$newVideos=M('videos');
 					$video = $newVideos->find($z);
 					$this->assign('newVideos',$video);
-					//
+					
 					//$this->display();
 					$this->success("更新成功",U('create',array('video_id'=>$z)));
 				}else{
@@ -136,7 +111,6 @@ class VideosController extends Controller{
 	}
 	
 	 public function edit(){
-	 	
          $id=I('id');
 
          $videosModel=M('videos');
@@ -169,16 +143,14 @@ class VideosController extends Controller{
        }
        //批量删除
        public function deleteAll(){	
-       		$videosModel=M('videos');
+       		$booksModel = M('books');
        		$id = $_GET['id'];
-       		//print_r($id);
        		$i=0;
        		foreach ($id as $key => $value) {
        			$it=$value;
        			//$it=(int)$it;
-       			$where = 'video_id='.$it;
-       			$list[$i]=$videosModel->where($where)->delete();
-       			//print_r($list[$i]);
+       			$where = 'book_id='.$it;
+       			$list[$i]=$booksModel->where($where)->delete();
        			$i++;
        		}
        		
@@ -189,11 +161,10 @@ class VideosController extends Controller{
        		else{	
        			$this->error('删除失败');
        		}
-       
-       	}
+       }
+
        //时间查询
        public function query(){
-       	
         $videosModel = M('videos');
 
         //$starttime = strtotime(I('post.date1'));

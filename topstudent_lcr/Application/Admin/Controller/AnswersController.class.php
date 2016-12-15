@@ -3,9 +3,10 @@ namespace Admin\Controller;
 use Think\Controller;
 use Admin\Model\studentquestiontabModel;
 class AnswersController extends Controller {
-    public function index(){
-    	
 
+	
+
+    public function index(){
         $que = M('question');
         
         $count = $que ->Field('answer.content as ans_content,question.content as que_content,answer.publish as ans_publish,question.publish as que_publish')->join('RIGHT JOIN answer ON question.que_id = answer.ans_que_id' )->count();
@@ -30,12 +31,12 @@ class AnswersController extends Controller {
 		$this->display();
 	}*/
 	public function edit($ids,$idq){
-		
         //获取数据
         $newsModel = M('answer');
         //$data=$newsModel->select();
         $condition['ans_id'] = $ids;
         $condition['ans_que_id'] = $idq;
+        var_dump($ids);
 
         $list = $newsModel->Field('answer.content as ans_content,question.content as que_content,answer.publish as ans_publish,question.publish as que_publish,answer.ans_username,question.que_id,answer.ans_que_id,answer.ans_id,question.title,question.pag')->join('question ON answer.ans_que_id = question.que_id' )->where($condition)->find();
         
@@ -75,7 +76,6 @@ class AnswersController extends Controller {
          }
     }
     public function query(){
-    	
         $Model = M('question');
 
         $starttime1 = I('post.date1');
@@ -109,7 +109,6 @@ class AnswersController extends Controller {
         $this->display();
     }
     public function search(){ 
-    	
         $Model = M('question');
         //$ans_content = M('answer');
         $value = I('post.search_value');

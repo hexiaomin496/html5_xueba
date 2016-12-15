@@ -14,13 +14,13 @@
         <div class="login">
         	<a href="#">登陆</a> | <a href="#">注册</a>
         </div>
-        <ul class="nav">
-        	<li><a href="首页.html">首页</a></li>
-            <li><a href="学霸问答.html">学霸问答</a></li>
-            <li><a href="课本点读.html">课本点读</a></li>
-            <li><a href="视频讲解.html">视频讲解</a></li>
-            <li><a href="学霸试卷.html">学霸试卷</a></li>
-            <li class="navnow"><a href="个人中心.html">个人中心</a></li>
+         <ul class="nav">
+            <li><a href="<?php echo U('Home/index/index');?>">首页</a></li>
+            <li><a href="<?php echo U('Home/learnansq/index');?>">学霸问答</a></li>
+            <li><a href="<?php echo U('Home/book/index');?>">课本点读</a></li>
+            <li><a href="<?php echo U('Home/video/index');?>">视频讲解</a></li>
+            <li><a href="<?php echo U('Home/tests/index');?>">学霸试卷</a></li>
+            <li class="navnow"><a href="<?php echo U('Home/personal/index');?>">个人中心</a></li>
         </ul>
     </div>
 </div>
@@ -32,71 +32,34 @@
 
 <div class="content">
 	<div class="mybody">
-    	<div class="bread"><span>您现在的位置：</span><a href="首页.html">首页</a> > <a href="#">个人中心</a></div>
+    	<div class="bread"><span>您现在的位置：</span><a href="<?php echo U('Home/personal/index');?>">首页</a> > <a href="<?php echo U('Home/personal/index');?>">个人中心</a></div>
 		<!--个人中心left-->
         <div class="personal_left">
         	<div class="user">
-            	<a href="#"><img src="/topstudent/Public/home/images/user_c.jpg" width="157" height="157" alt="user" /></a>
-                <p>何大敏</p>
+            	<a href="#"><img src="/topstudent/Public/<?php echo ($lists["head_picture"]); ?>" width="157" height="157" alt="user" /></a>
+                <p><?php echo ($lists["user_username"]); ?></p>
             </div>
             <ul class="left_nav">
                     <li><a href="<?php echo U('Home/personal/index');?>">首页</a></li>
-                    <li class="left_nav_now"><a href="<?php echo U('Home/personal/myquestions');?>">我的问题</a></li>
-                    <li><a href="<?php echo U('Home/personal/myanswers');?>">我的回答</a></li>
-                    <li><a href="<?php echo U('Home/personal/myvideos');?>">视频收藏</a></li>
-                    <li><a href="<?php echo U('Home/personal/mytests');?>">试卷收藏</a></li>
+                    <li><a href="<?php echo U('Home/personal/myquestions');?>">我的问题</a></li>
+                    <li class="left_nav_now"><a href="<?php echo U('Home/personal/myanswers');?>">我的回答</a></li>
+                    <li><a href="<?php echo U('Home/video/index');?>">视频收藏</a></li>
+                    <li><a href="<?php echo U('Home/tests/index');?>">试卷收藏</a></li>
                     <li><a href="<?php echo U('Home/personal/myself');?>">个人管理</a></li>
                     
                     <li><a href="<?php echo U('Home/personal/certeacher');?>">教师认证</a></li>
-            </ul>       	
+            </ul>       
         </div>
         <!--个人中心right-->
         <div class="personal_form_right form_bg">
         <h1>我的问题<span> My question</span></h1>
-        	<div class="question">
-            	<h2><a href="问答详情.html" target="_blank">心里别提有多高兴了是不是感叹句?</a></h2>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">腌萝卜咸菜放的盐越多萝卜就变得越软是吗</a></h2>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">四川的郫县豆辨腌肉怎么做</a></h2>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">已知函数f(x)=x²+2ax+2,x∈[-5,5],求y=f(x)的最小值</a></h2>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">柯南M09特典中那个律师的名字好耳熟。是...?</a></h2>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">跪求那些年 我们一起追的女孩rap说唱链接</a></h2>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">南瓜可以和鲫鱼同时煮粥给宝宝吃吗?</a></h2>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
-            <div class="question">
-            	<h2><a href="问答详情.html" target="_blank">蒸扇贝的做法，蒸扇贝怎么做好吃，蒸扇贝的家常做法</a></h2>
-                <h4>2016-12-1&nbsp;&nbsp;&nbsp;&nbsp;回答：2&nbsp;&nbsp;&nbsp;&nbsp;98人看过&nbsp;&nbsp;&nbsp;&nbsp;<span>语文学科</span></h4>
-            </div>
+        <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i;?><div class="question">
+            	<h2><a href="<?php echo U('Home/personal/quedetails');?>/qid/<?php echo ($data["que_id"]); ?>" target="_blank"><?php echo ($data["content"]); ?></a></h2>
+                <h4><?php echo ($data["publish"]); ?>&nbsp;&nbsp;&nbsp;&nbsp;回答：<?php echo ($data["ans_count"]); ?>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo ($data["que_view"]); ?>人看过&nbsp;&nbsp;&nbsp;&nbsp;<span><?php echo ($data["pag"]); ?></span></h4>
+            </div><?php endforeach; endif; else: echo "" ;endif; ?>
+            
             <div class="page">
-            	<ul>
-                	<li class="up"><a href="#">上一页</a></li>
-                    <li class="now">1</li>
-                    <li class="num"><a href="#">2</a></li>
-                    <li class="num"><a href="#">3</a></li>
-                    <li class="num"><a href="#">4</a></li>
-                    <li class="num"><a href="#">5</a></li>
-                    <li>...</li>
-                    <li class="num"><a href="#">8</a></li>
-                    <li class="up"><a href="#">下一页</a></li>
-                </ul>
+            	<?php echo ($page); ?>
     		</div>
 
         </div>

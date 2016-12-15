@@ -4,10 +4,8 @@ use Think\Controller;
 
 class UserController extends Controller
 {
-	
 	public function index()
 	{
-		
 		import('Org.Util.Page');
 		$userModel = M('usertab');
 		$count = $userModel->count();
@@ -29,7 +27,6 @@ class UserController extends Controller
     //教师管理
 	public function teacher()
 	{
-		
 		import('Org.Util.Page');
 
 		$teacherModel = M('teachertab');
@@ -52,7 +49,6 @@ class UserController extends Controller
     //查看
     public function detail()
     {
-    	
     	//获取id
     	$id = I('id');
 
@@ -135,7 +131,6 @@ class UserController extends Controller
     //搜索用户---输入单字会乱码，输入的不是数字筛选出的有错
     public function searchUser()
     {
-    	
         import('Org.Util.Page');
         $username = $_POST['user_name'];
         $userModel = M('usertab');
@@ -159,7 +154,6 @@ class UserController extends Controller
 	//搜索老师
 	public function searchTea()
 	{
-		
 		import('Org.Util.Page');
         $teachername = $_POST['user_name'];
         $teacherModel = M('teachertab');
@@ -282,7 +276,7 @@ class UserController extends Controller
 	//批量撤职
 	public function fireAll()
 	{
-		/*$teacherModel = M('teachertab');
+		$teacherModel = M('teachertab');
     	$id = $_POST['test'];
     	$idResult=array_pop($id);//删除数组的最后一个元素
 
@@ -297,29 +291,6 @@ class UserController extends Controller
     		$this->success('成功撤职'.$i.'条',U('teacher'));
     	}else{
     		$this->error('撤职失败');
-    	}*/
-
-    	$teacherModel = M('teachertab');
-       		$id = $_GET['id'];
-       		//print_r($id);
-       		$i=0;
-       		
-       		foreach ($id as $key => $value) {
-       			$it=$value;
-       			//$it=(int)$it;
-       			$where = 'tea_id='.$it;
-       			
-       			$list[$i]=$teacherModel->where($where)->delete();
-       			//print_r($list[$i]);
-       			$i++;
-       		}
-       		
-       		  
-       		if($list){	
-       			$this->success("成功撤职{$i}条",U('teacher'));
-       		}
-       		else{	
-       			$this->error('撤职失败');
-       		}
+    	}
     }
 }

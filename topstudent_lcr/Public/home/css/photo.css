@@ -1,0 +1,61 @@
+@charset "utf-8";
+/*科e互联特效基本框架CSS*/
+div {text-align:left}
+a img {border:0}
+ul, ol, li {list-style-type:none;vertical-align:0}
+a {outline-style:none;color:#535353;text-decoration:none}
+a:hover { color: #D40000; text-decoration: none}
+.clear{height:0; overflow:hidden; clear:both}
+.button {display: inline-block;zoom: 1; *display: inline;vertical-align: baseline;margin: 0 2px;outline: none;cursor: pointer;text-align: center;text-decoration: none;font: 14px/100% Arial, Helvetica, sans-serif;padding:0.25em 0.6em 0.3em;text-shadow: 0 1px 1px rgba(0,0,0,.3);-webkit-border-radius: .5em; -moz-border-radius: .5em;border-radius: .5em;-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.red {color: #faddde;border: solid 1px #980c10;background: #d81b21;background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#A51715));background: -moz-linear-gradient(top,  #ed1c24,  #A51715);filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
+}
+.red:hover { background: #b61318; background: -webkit-gradient(linear, left top, left bottom, from(#c9151b), to(#a11115)); background: -moz-linear-gradient(top,  #c9151b,  #a11115); filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#c9151b', endColorstr='#a11115'); color:#fff;}
+.red:active {color: #de898c;background: -webkit-gradient(linear, left top, left bottom, from(#aa1317), to(#ed1c24));background: -moz-linear-gradient(top,  #aa1317,  #ed1c24);filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');}
+.cor_bs,.cor_bs:hover{color:#ffffff;}
+.keTitle{height:100px; line-height:100px; font-size:30px; font-family:'微软雅黑'; color:#000; text-align:center; font-weight:normal}
+.kePublic{background:rgb(247,247,247); font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+.keBottom{color:#FFF; padding-top:25px; line-height:28px; text-align:center; font-family:'微软雅黑'; background:url(../images/bodyBg2.jpg) repeat-x top left; padding-bottom:25px}
+.keTxtP{font-size:16px; color:#ffffff;}
+.keUrl{color:#FFF; font-size:30px;}
+.keUrl:hover{ text-decoration: underline; color: #FFF; }
+.mKeBanner,.mKeBanner div{text-align:center;}
+/*科e互联特效基本框架CSS结束，应用特效时，以上样式可删除*/
+/* 效果CSS开始 */
+.kePublic a,.kePublic a:link,.kePublic a:visited { color: #006699; text-decoration: none; }
+.kePublic a:hover { color: #ff7031; }
+.HS10, .HS15 { overflow: hidden; clear: both; }
+.HS10 { height: 10px; }
+.HS15 { height: 15px; }
+.Hidden { display: none; }
+.Clearer { display: block; clear: both; font-size: 1px; line-height: 1px; margin: 0; padding: 0; }
+.FlLeft { float: left; }
+.FlRight { float: right; }
+/*幻灯片区域背景*/
+.MainBg { background-color:#fff; width: 1100px; margin: 0 auto; }
+/*标题和页码*/
+.Title { color: #444; padding: 5px 20px 10px 20px; text-align: center; line-height: 60px; height: 60px; }
+.Title h1 { display: inline; font-size:26px; }
+.Title .Counter { color: #666; }
+.Title .CounterCurrent { color: #C00; font-size: 20px; font-weight: bold; }
+/*灰色分隔线*/
+.SpaceLine { border-bottom: 1px solid #fff; height: 1px; font-size: 1px; }
+/*大图展示区域*/
+.OriginalPicBorder { padding: 15px 15px 0 15px; }
+#OriginalPic { width: 930px; overflow: hidden; position: relative; font-size: 12px; }
+#OriginalPic img { display: block; margin: 0 auto; }
+/*鼠标手势*/
+.CursorL { position: absolute; z-index: 999; width: 50%; height: 900px; color: #FFF; left: 120px; cursor: url(../images/cur-left.cur.ico), auto; background: url(../images/space.png) repeat scroll 0 0 transparent; }
+.CursorR { position: absolute; z-index: 999; width: 50%; height: 900px; color: #FFF; right: 0; cursor: url(../images/cur-right.cur.ico), auto; background: url(../images/space.png) repeat scroll 0 0 transparent; }
+/*小图预览和滑动*/
+.SliderPicBorder { width: 800px; height: 930px; overflow:hidden;}
+.SliderPicBorder img{
+	border:1px solid #ededed;
+	}
+.Summary { line-height: 20px; display: block; width: 100px; margin-right: 10px; color: #999; overflow: hidden; background-color: #fff; padding: 10px; }
+.More { text-align: right; color: #666; line-height: 40px; height: 40px; font-size: 12px; display: block;}
+.ThumbPicBorder { width: 856px; margin: 0 auto;padding-bottom:20px; }
+#ThumbPic img { border: 2px solid rgb(47,138,187); cursor: pointer; background-color: #666; margin: 0 4px; width: 86px; height: 120px; display: block; }
+#ThumbPic img.active { border: 2px solid #FF9900; }
+
+/* 效果CSS结束 */

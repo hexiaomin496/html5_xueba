@@ -3,15 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>学霸养成</title>
-<link href="/topstudent/Public/home/css/public.css" rel="stylesheet" type="text/css" />
-<link href="/topstudent/Public/home/css/login.css" rel="stylesheet" type="text/css" />
-<script src="/topstudent/Public/home/js/jquery.min.js" type="text/javascript"></script>
+<link href="/all/topstudent/Public/home/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/all/topstudent/Public/home/css/login.css" rel="stylesheet" type="text/css" />
+<script src="/all/topstudent/Public/home/js/jquery.min.js" type="text/javascript"></script>
 </head>
 
 <body>
 <div class="header">
 	<div class="mybody">
-    	<a href="#"><img src="/topstudent/Public/home/images/logo.jpg" alt="logo" /></a>
+    	<a href="#"><img src="/all/topstudent/Public/home/images/logo.jpg" alt="logo" /></a>
         <div class="login">
         	<a href="<?php echo U(login);?>">登录</a> | <a href="<?php echo U(register);?>">注册</a>
         </div>
@@ -27,14 +27,14 @@
 </div>
 <div class="ad">
 	<div class="mybody">
-    	<img src="/topstudent/Public/home/images/ad.jpg" width="1200" height="100" alt="ad" />
+    	<img src="/all/topstudent/Public/home/images/ad.jpg" width="1200" height="100" alt="ad" />
     </div>
 </div>
 
 <div class="content1">
     	<div class="contentright">
         	<h1>用户注册</h1>
-            <form action="/topstudent/index.php/Home/users/doReg" method="post">
+            <form action="/all/topstudent/index.php/Home/users/doReg" method="post">
                 <input type="text" name="username" class="username" placeholder="请输入您的用户名">
                 <input type="password" id="password" name="password" class="password" placeholder="请输入您的密码">
                 <input type="password" id="repwd" name="password" class="password" placeholder="请确认您的密码">

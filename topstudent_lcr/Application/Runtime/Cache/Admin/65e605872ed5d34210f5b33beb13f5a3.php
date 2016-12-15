@@ -153,7 +153,6 @@
             </div>
             <div class="tablegroup">
             	<table class="table">
-            	<form action="" method="get">
                 	<tr>
                     	<th>&nbsp;</th>
                         <th>用户名</th>
@@ -163,7 +162,7 @@
                         <th>封禁</th>
                     </tr>
                 <?php if(is_array($user)): $i = 0; $__LIST__ = $user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$user): $mod = ($i % 2 );++$i;?><tr>
-                    	<td><input type="checkbox" name="id[]" value=""></td>
+                    	<td><input type="checkbox" name="test" value=""></td>
                         <td><?php echo ($user["user_username"]); ?></td>
                         <td><?php echo ($user["user_score"]); ?></td>
                         <td><?php echo ($user["user_status"]); ?></td>
@@ -171,7 +170,7 @@
                         <td><a href="<?php echo U('Admin/user/closure');?>/id/<?php echo ($user["user_id"]); ?>">封禁</a></td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>              
                     <tr class="table-bottom">
-                    	<td><input type="checkbox" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
+                    	<td><input type="checkbox" name="test" value="" onclick="if(this.checked==true) { checkAll('test'); } else { clearAll('test'); }"></td>
                         <td style="text-align:left">全选<button class="button4">批量封禁</button></td>
                         <td colspan="4" style="text-align:right">
                             <?php echo ($page); ?>
@@ -187,7 +186,6 @@
                             </ul> -->
                         </td>
                     </tr>
-                    </form>
                 </table>
             </div>
 		</div>
