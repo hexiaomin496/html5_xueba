@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/home/css/public.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/home/css/books.css" rel="stylesheet" type="text/css" />
+<title>学霸养成</title>
+</head>
+<body>
+<div class="header">
+  <div class="mybody">
+      <div class="logo"><a href="#"><img src="__PUBLIC__/home/images/logo.jpg" alt="logo" /></a></div>
+        <ul class="nav">
+            <li><a href="{:U('Home/index/index')}">首页</a></li>
+            <li><a href="{:U('Home/learnansq/index')}">学霸问答</a></li>
+            <li class="navnow"><a href="{:U('Home/book/index')}">课本点读</a></li>
+            <li><a href="{:U('Home/video/index')}">视频讲解</a></li>
+            <li><a href="{:U('Home/tests/index')}">学霸试卷</a></li>
+            <li><a href="{:U('Home/personal/index')}">个人中心</a></li>
+        </ul>
+        <div class="login">
+            <?php
+                if(!isset($_SESSION['user_username'])||$_SESSION['user_username']==''){ 
+                    echo "<a href='".U('users/login')."'>登录</a> | <a href='".U('users/register')."'>注册</a>";
+                }
+                else{   
+                    echo $_SESSION['user_username']."&nbsp;&nbsp;<a href='__MODULE__/users/logout'>退出</a>";
+                }
+
+            ?>
+        </div>
+    </div>
+</div>
+<div class="ad">
+	<div class="mybody">
+    	<img src="__PUBLIC__/home/images/ad.jpg" width="1200" height="100" alt="ad" />
+    </div>
+</div>
+<div class="content">
+<div class="mybody">
+	<div class="bread"><span>您现在的位置：</span><a href="{:U('Home/index/index')}">首页</a> > > <a href="{:U('home/book/index')}">课本点读</a></div>
+    <div class="lp">
+  	<h1 class="title2">语文</h1>
+     <ul>
+    		<li><a href="{:U('home/book/index')}" class="lphover">一年级</a></li>
+        <li><a href="{:U('home/book/gradeTwo')}" class="lpli">二年级</a></li>
+        <li><a href="{:U('home/book/gradeThree')}" class="lpli">三年级</a></li>
+        <li><a href="{:U('home/book/gradeFour')}" class="lpli">四年级</a></li>
+        <li><a href="{:U('home/book/gradeFive')}" class="lpli">五年级</a></li>
+        <li><a href="{:U('home/book/gradeSix')}" class="lpli">六年级</a></li>
+    	</ul>
+    <div class="lpimg">
+  <volist name="chinese" id="chinese">
+  <if condition="($key eq 0)">
+    <div class="lpimg1"><p><a href="{:U('home/book/detail')}/id/{$chinese.book_id}" target="_blank">小学一年级语文</a></p><a href="{:U('home/book/detail')}/id/{$chinese.book_id}" target="_blank"><img class='img0' src="__PUBLIC__/{$chinese.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  <if condition="($key eq 1) OR ($key eq 2) OR ($key eq 3)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$chinese.book_id}" target="_blank">小学一年级语文</a></p><a href="{:U('home/book/detail')}/id/{$chinese.book_id}" target="_blank"><img class='img1' src="__PUBLIC__/{$chinese.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  </volist>
+    </div>
+    <div class="lpimg lpimg3">
+  <volist name="chineses" id="chineses">
+  <if condition="($key eq 4)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$chineses.book_id}" target="_blank">小学一年级语文</a></p><a href="课本详情.html" target="_blank"><img class='img1' src="__PUBLIC__/{$chineses.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  <if condition="($key eq 5) OR ($key eq 6) OR ($key eq 7)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$chineses.book_id}" target="_blank">小学一年级语文</a></p><a href="{:U('home/book/detail')}/id/{$chineses.book_id}" target="_blank"><img class='img1' src="__PUBLIC__/{$chinese.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  </volist>
+    </div>
+    </div>
+  <div class="lp">
+  	<h1 class="title2">数学</h1>
+    <ul>
+    		<li><a href="{:U('home/book/index')}" class="lphover">一年级</a></li>
+        <li><a href="{:U('home/book/gradeTwo')}" class="lpli">二年级</a></li>
+        <li><a href="{:U('home/book/gradeThree')}" class="lpli">三年级</a></li>
+        <li><a href="{:U('home/book/gradeFour')}" class="lpli">四年级</a></li>
+        <li><a href="{:U('home/book/gradeFive')}" class="lpli">五年级</a></li>
+        <li><a href="{:U('home/book/gradeSix')}" class="lpli">六年级</a></li>
+    	</ul>
+    <div class="lpimg">
+   	  <volist name="math" id="math">
+  <if condition="($key eq 0)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$math.book_id}" target="_blank">小学一年级数学</a></p><a href="{:U('home/book/detail')}/id/{$math.book_id}" target="_blank"><img class='img1' src="__PUBLIC__/{$math.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  <if condition="($key eq 1) OR ($key eq 2) OR ($key eq 3)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$math.book_id}" target="_blank">小学一年级数学</a></p><a href="{:U('home/book/detail')}/id/{$math.book_id}" target="_blank"><img class='img1' src="__PUBLIC__/{$math.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  </volist>
+    </div>
+    <div class="lpimg lpimg3">
+   	 <volist name="maths" id="maths">
+  <if condition="($key eq 4)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$maths.book_id}" target="_blank">小学一年级数学</a></p><a href="{:U('home/book/detail')}/id/{$maths.book_id}" target="_blank"><img class='img1' src="__PUBLIC__/{$maths.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  <if condition="($key eq 5) OR ($key eq 6) OR ($key eq 7)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$maths.book_id}" target="_blank">小学一年级数学</a></p><a href="{:U('home/book/detail')}/id/{$maths.book_id}" target="_blank"><img class='img1' src="__PUBLIC__/{$maths.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  </volist>
+    </div>
+  </div>
+  <div class="lp">
+    <h1 class="title2">英语</h1>
+    <ul>
+        <li><a href="{:U('home/book/index')}" class="lphover">一年级</a></li>
+        <li><a href="{:U('home/book/gradeTwo')}" class="lpli">二年级</a></li>
+        <li><a href="{:U('home/book/gradeThree')}" class="lpli">三年级</a></li>
+        <li><a href="{:U('home/book/gradeFour')}" class="lpli">四年级</a></li>
+        <li><a href="{:U('home/book/gradeFive')}" class="lpli">五年级</a></li>
+        <li><a href="{:U('home/book/gradeSix')}" class="lpli">六年级</a></li>
+      </ul>
+    <div class="lpimg">
+      <volist name="english" id="english">
+  <if condition="($key eq 0)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$english.book_id}" target="_blank">小学一年级英语</a></p><a href="{:U('home/book/detail')}/id/{$english.book_id}" target="_blank"><img class='img1' src="__PUBLIC__/{$english.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  <if condition="($key eq 1) OR ($key eq 2) OR ($key eq 3)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$english.book_id}" target="_blank">小学一年级英语</a></p><a href="{:U('home/book/detail')}/id/{$english.book_id}" target="_blank"><img class='img1' src="__PUBLIC__/{$english.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  </volist>
+    </div>
+    <div class="lpimg lpimg3">
+     <volist name="englishs" id="englishs">
+  <if condition="($key eq 4)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$englishs.book_id}" target="_blank">小学一年级英语</a></p><a href="{:U('home/book/detail')}/id/{$englishs.book_id}" target="_blank"><img class='img1' src="__PUBLIC__/{$englishs.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  <if condition="($key eq 5) OR ($key eq 6) OR ($key eq 7)">
+    <div class="lpimg1 lpimg2"><p><a href="{:U('home/book/detail')}/id/{$englishs.book_id}" target="_blank">小学一年级英语</a></p><a href="{:U('home/book/detail')}/id/{$englishs.book_id}" target="_blank"><img class='img1' src="__PUBLIC__/{$englishs.book_cover}" width="240" height="322" alt="lp" /></a></div>
+  </if>
+  </volist>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="footer">
+	<div class="mybody">
+    <p>版权所有：河北师范大学软件学院 永信指导小组 地址：石家庄市南二环东路20号 冀ICP备字201401号</p>
+    </div>
+</div>
+</body>
+</html>
