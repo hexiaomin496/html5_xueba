@@ -1,0 +1,18 @@
+[ 2016-11-29T08:18:54+08:00 ] 127.0.0.1 /topstudent/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.014527s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.022287s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.022363s ]
+ERR: 模板不存在:./Application/Home/View/Index/index.html
+
+[ 2016-11-29T16:51:01+08:00 ] 127.0.0.1 /topstudent/index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.018738s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.011005s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011077s ]
+ERR: 模板不存在:./Application/Home/View/Index/index.html
+
