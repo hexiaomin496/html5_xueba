@@ -1,18 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="__PUBLIC__/home/css/public.css" rel="stylesheet" type="text/css" />
-<link href="__PUBLIC__/home/css/setquestion.css" rel="stylesheet" type="text/css" />
-<title>我要提问</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__PUBLIC__/home/css/public.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/home/css/setquestion.css" rel="stylesheet" type="text/css" />
+    <title>学霸养成</title>
 </head>
 <body>
 <div class="header">
-	<div class="mybody">
-    	<a href="#"><img src="__PUBLIC__/home/images/logo.jpg" alt="logo" /></a>
-        <div class="login">
-        	<a href="#">登陆</a> | <a href="#">注册</a>
-        </div>
+    <div class="mybody">
+        <div class="logo"><a href="#"><img src="__PUBLIC__/home/images/logo.jpg" alt="logo" /></a></div>
         <ul class="nav">
             <li><a href="{:U('Home/index/index')}">首页</a></li>
             <li class="navnow"><a href="{:U('Home/learnansq/index')}">学霸问答</a></li>
@@ -21,47 +18,58 @@
             <li><a href="{:U('Home/tests/index')}">学霸试卷</a></li>
             <li><a href="{:U('Home/personal/index')}">个人中心</a></li>
         </ul>
+        <div class="login">
+            <?php
+                if(!isset($_SESSION['user_username'])||$_SESSION['user_username']==''){
+                    echo "<a href='".U('users/login')."'>登录</a> | <a href='".U('users/register')."'>注册</a>";
+            }
+            else{
+            echo $_SESSION['user_username']."&nbsp;&nbsp;<a href='__MODULE__/users/logout'>退出</a>";
+            }
+
+            ?>
+        </div>
     </div>
 </div>
 <div class="ad">
-	<div class="mybody">
-    	<img src="__PUBLIC__/home/images/ad.jpg" width="1200" height="100" alt="ad" />
+    <div class="mybody">
+        <img src="__PUBLIC__/home/images/ad.jpg" width="1200" height="100" alt="ad" />
     </div>
 </div>
 <div class="content">
-<div class="mybody">
-	<div class="bread"><span>您现在的位置</span> > <a href="{:U('Home/learnansq/index')}">学霸问答</a> > <a href="#">我要提问</a></div>
-    <div class="quesform">
-    	<div class="questop">
-    	<h1 class="title">问题</h1>
-        <form action="{:U('Home/learnansq/asksubmit')}" method="post">
-        	<textarea class="text" name="title" id="title"></textarea>
+    <div class="mybody">
+        <div class="bread"><span>您现在的位置</span> > <a href="{:U('Home/learnansq/index')}">学霸问答</a> > <a href="#">我要提问</a></div>
+        <div class="quesform">
+            <div class="questop">
+                <h1 class="title">问题</h1>
+                <form action="{:U('Home/learnansq/asksubmit')}" method="post">
+                    <textarea class="text" name="title" id="title"></textarea>
+            </div>
+            <div class="questop">
+                <h1 class="title">分类</h1>
+                <select class="select" name="pag" id="pag">
+                    <option>语文</option>
+                    <option>数学</option>
+                    <option>英语</option>
+                    <option>小学</option>
+                    <option>初中</option>
+                </select>
+            </div>
+            <div class="questop">
+                <h1 class="title">详情</h1>
+                <textarea class="text text2"  name="content" id="content"></textarea>
+            </div>
+
+            <div class="questop">
+                <button type="submit" value="发布问题" name="" class="button">发布问题</button>
+            </div>
+            </form>
         </div>
-        <div class="questop">
-        <h1 class="title">分类</h1>
-        <select class="select" name="pag" id="pag">
-        	<option>语文</option>
-            <option>数学</option>
-            <option>英语</option>
-            <option>小学</option>
-            <option>初中</option>
-        </select>
-        </div>
-        <div class="questop">
-    	<h1 class="title">详情</h1>
-        	<textarea class="text text2"  name="content" id="content"></textarea>
-        </div>
-        
-        <div class="questop">
-        	<button type="submit" value="发布问题" name="" class="button">发布问题</button>
-        </div>
-        </form>
     </div>
-</div>
-<div class="footer">
-	<div class="mybody">
-    <p>版权所有：河北师范大学软件学院 永信指导小组 地址：石家庄市南二环东路20号 冀ICP备字201401号</p>
+    <div class="footer">
+        <div class="mybody">
+            <p>版权所有：河北师范大学软件学院 永信指导小组 地址：石家庄市南二环东路20号 冀ICP备字201401号</p>
+        </div>
     </div>
-</div>
 </body>
 </html>
