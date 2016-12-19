@@ -274,15 +274,6 @@ class UserController extends Controller
 		$this->assign('teacher',$teacher);
 		$this->display();
 	}
-    public function doCredit(){
-            $condition['user_id'] = I('id');
-            $teacherModel = M('teachertab');
-            $teacher = $teacherModel->where($condition)->find();
-            $teacher['tea_credit'] = '成功';
-            $teacher = $teacherModel->where($condition)->save($teacher);
-            //$this->success('认证成功',U('admin/user/teacher'));
-            $this->redirect('admin/user/teacher', '', 0, '认证成功');
-      }
 
     //撤职
     public function fire()
