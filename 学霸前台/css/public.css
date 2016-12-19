@@ -46,14 +46,20 @@ body,html{
 	margin:0 auto;
 	}
 .header{
-	background-color:#FFF;
+	overflow:auto;
 	width:100%;
+	background:#fff;
 	}
-.header img{
-	margin:10px 0;
-}
+
+.logo{
+	overflow:auto;
+	width:150px;
+	height:56px;
+	margin:10px;
+	float:left;}
 .nav{
-	float:right;
+	margin-left:200px;
+	float:left;
 	margin-top:20px;
 	}
 .nav li{
@@ -70,7 +76,7 @@ body,html{
 	color:rgb(90,142,246);
 	text-decoration:none;
 	border-bottom:2px solid rgb(90,142,246);
-	background-color:#FFF;
+	background:#fff;
 	}
 .nav .navnow a{
 	color:rgb(90,142,246);
@@ -78,7 +84,7 @@ body,html{
 	border-bottom:2px solid rgb(90,142,246);
 	}
 .login{
-	float:right;
+	float:left;
 	margin-left:80px;
 	margin-top:24px;
 	}
@@ -92,6 +98,7 @@ body,html{
 	width:100%;
 	background:rgb(12,42,76);
 	height:76px;
+	float:left;
 	}
 .footer p{
 	color:#fff;

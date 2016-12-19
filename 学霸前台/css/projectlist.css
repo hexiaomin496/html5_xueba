@@ -1,8 +1,3 @@
-.nav{
-	margin-right:151px;
-	margin-top:-56px;}
-.login{
-	margin-top:-50px;}
 .content{
 	width:100%;
 	overflow:auto;
@@ -19,7 +14,7 @@
 	overflow:auto;
 	padding-bottom:40px;}
 .search{
-	width:700px;
+	width:800px;
 	height:50px;
 	margin-top:21px;}
 .searchtext{
@@ -30,7 +25,7 @@
 	background-position:16px 14px;
 	display:block;
 	border:1px solid #4c6699;
-	width:558px;
+	width:500px;
 	height:48px;
 	color:#d9d9d9;
 	line-height:48px;
@@ -45,6 +40,8 @@
 	height:50px;
 	color:#FFF;
 	background-color:#2f8abb;}
+.searchbutton2{
+	margin-left:20px;}
 .lp{
 	margin-top:19px;}
 .lp ul{

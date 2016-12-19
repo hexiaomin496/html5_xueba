@@ -1,0 +1,24 @@
+[ 2016-12-07T09:17:27+08:00 ] 127.0.0.1 /topstudent/index.php/Admin/questions
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000798s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001055s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001171s ]
+SQL: SHOW COLUMNS FROM `question` [ RunTime:0.0491s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `question` LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT * FROM `question` ORDER BY que_id LIMIT 0,4   [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000160s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000286s ]
+NOTIC: [8] Undefined index: adm_username E:\xuexiruanjian\HTML5\anzhuang\htdocs\topstudent\Application\Runtime\Cache\Admin\bd352ece0adfd9d39d9d75cb4446efee.php 第 18 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.101880s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.102086s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001335s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001533s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002891s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003155s ]
+
