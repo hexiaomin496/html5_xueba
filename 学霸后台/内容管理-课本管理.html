@@ -67,6 +67,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title user">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">管理员管理</a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                        	<ul>
+                            	<li><a href="管理员管理-管理员列表.html">管理员列表</a></li>
+                                <li><a href="管理员管理-添加管理员.html">添加管理员</a></li>
+                                <li><a href="管理员管理-个人密码修改.html">个人密码修改</a></li>
+                            </ul>
+                        </div>
+                    </div> 
+                </div>
             </div>
         </div>
         
@@ -76,7 +92,7 @@
                 <form action="">
                     <div class="file-box">  
                         <input type='button' class='btn' value='选择文件' /> 
-                        <input type='text' name='textfield' id='textfield' class='txt' value="未选择任何文件" readonly="true"/>
+                        <input type='text' name='textfield' id='textfield' class='txt' value="未选择任何文件" readonly/>
                         <input type="file" name="fileField" class="file" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" accept="image/jpeg,image/gif,image/png" /> 
                     </div>
                     <a href="内容管理-课本管理-编辑.html" class="button2">上传课本封面</a>
