@@ -24,7 +24,17 @@
                     echo "<a href='".U('users/login')."'>登录</a> | <a href='".U('users/register')."'>注册</a>";
             }
             else{
-            echo $_SESSION['user_username']."&nbsp;&nbsp;<a href='__MODULE__/users/logout'>退出</a>";
+            $str = $_SESSION['user_username'];
+            if(strlen($str)>6){
+
+            echo "<a href='".U('personal/myself')."'>".mb_substr($str,0,6,'utf-8')."..."."</a>"."&nbsp;&nbsp;<a href='__MODULE__/users/logout'>退出</a>";
+            }
+            else{
+
+            echo "<a href='".U('personal/myself')."'>".$str."</a>"."&nbsp;&nbsp;<a href='__MODULE__/users/logout'>退出</a>";
+            }
+
+
             }
 
             ?>
