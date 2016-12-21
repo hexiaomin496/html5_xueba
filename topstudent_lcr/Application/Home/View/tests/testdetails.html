@@ -13,7 +13,25 @@
 	<div class="mybody">
     	<a href="#"><img src="__PUBLIC__/home/images/logo.jpg" alt="logo" /></a>
         <div class="login">
-        	<a href="#">登陆</a> | <a href="#">注册</a>
+            <?php
+                if(!isset($_SESSION['user_username'])||$_SESSION['user_username']==''){
+                    echo "<a href='".U('users/login')."'>登录</a> | <a href='".U('users/register')."'>注册</a>";
+            }
+            else{
+            $str = $_SESSION['user_username'];
+            if(strlen($str)>6){
+
+            echo "<a href='".U('personal/myself')."'>".mb_substr($str,0,6,'utf-8')."..."."</a>"."&nbsp;&nbsp;<a href='__MODULE__/users/logout'>退出</a>";
+            }
+            else{
+
+            echo "<a href='".U('personal/myself')."'>".$str."</a>"."&nbsp;&nbsp;<a href='__MODULE__/users/logout'>退出</a>";
+            }
+
+
+            }
+
+            ?>
         </div>
         <ul class="nav">
             <li><a href="{:U('Home/index/index')}">首页</a></li>
