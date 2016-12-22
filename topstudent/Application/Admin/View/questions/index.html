@@ -9,12 +9,13 @@
     <meta name="author" content="LayoutIt!">
     <link href="__PUBLIC__/admin/css/bootstrap.min.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style2.css" rel="stylesheet">
 </head>
 
 <body>
 <div class="container-fluid">
     <div class="row header">
-        <h1>学霸养成后台管理系统<span>欢迎您，王小明！<a href="login.html">退出</a></span></h1>
+        <h1>学霸养成后台管理系统<span>{$_SESSION['adm_username']}&nbsp;<a href="__MODULE__/Admins/logout">退出</a></a></span></h1>
     </div>
 </div>
 <div class="container-fluid">
@@ -30,9 +31,9 @@
                     <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
                             <ul>
-                                <li><a href="内容管理-视频管理.html">视频管理</a></li>
-                                <li><a href="内容管理-课本管理.html">课本管理</a></li>
-                                <li><a href="内容管理-试卷管理.html">试卷管理</a></li>
+                                <li><a href="{:U('Admin/videos/index')}">视频管理</a></li>
+                                <li><a href="{:U('Admin/books/index')}">课本管理</a></li>
+                                <li><a href="{:U('Admin/tests/index')}">试卷管理</a></li>
                             </ul>
                         </div>
                     </div>
@@ -46,7 +47,7 @@
                     <div id="collapseTwo" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul>
-                                <li class="linow"><a href="{:U('Admin/questions/index')}">问题审核</a></li>
+                                <li  class="linow"><a href="{:U('Admin/questions/index')}">问题审核</a></li>
                                 <li><a href="{:U('Admin/answers/index')}">回复审核</a></li>
                             </ul>
                         </div>
@@ -61,34 +62,49 @@
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body">
                             <ul>
-                                <li><a href="用户管理-用户列表.html">用户列表</a></li>
-                                <li><a href="用户管理-教师管理.html">教师管理</a></li>
+                                <li><a href="{:U('Admin/user/index')}">用户列表</a></li>
+                                <li><a href="{:U('Admin/user/teacher')}">教师管理</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title user">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">管理员管理</a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse ">
+                        <div class="panel-body">
+                            <ul>
+                                <li><a href="{:U('Admin/admins/index')}">管理员列表</a></li>
+                                <li><a href="{:U('Admin/admins/add')}">添加管理员</a></li>
+                                <li><a href="{:U('Admin/admins/edit')}">个人密码修改</a></li>
+                            </ul>
+                        </div>
+                    </div> 
+                </div>
             </div>
         </div>
-        
         <div class="col-md-10 col-xs-10 right">
             <h1>问题审核</h1>
             <div class="buttongroup">
-            <div class="grop1">
-                <form action="{:U('Admin/questions/search')}" class="navbar-form" role="search" method="post">
+            <div class="col-md-6 col-xs-6 left">
+                <form action="{:U('Admin/questions/search')}" class="navbar-form" role="search" >
                    <div class="form-group">
                     <input type="text" class="form-control" style="margin-top:-4px;" name="search_value" id="search_value" />
 
                     </div>
-                  <button  type="submit" class="button2" >搜索</button>
+                  <button  type="submit" class="btn button2" >搜索</button>
                 </form>
             </div>
-            <div class="grop2">
+            <div class="col-md-6 col-xs-6 left">
                 <form action="{:U('Admin/questions/query')}" class="navbar-form" role="search" method="post">
                     日期：
                     <input type="date" value="" name="date1">
                     至
                     <input type="date" value="" name="date2">
-                    <button type="submit" class="button3">查询</button>
+                    <button type="submit" class="btn button3">查询</button>
                 </form>
             </div>
             </div>
@@ -106,7 +122,19 @@
                     <volist name="list" id="data">
                     <tr>
                         <td><input type="checkbox" name="id[]" id = "id[]" value="{$data.que_id}"></td>
-                        <td title="{$data.content}"><a target="_blank" href="{:U('Admin/questions/edit')}/id/{$data.que_id}" title="{$data.content}">{$data.content}</a></td>
+                        <td title="{$data.content}"><a target="_blank" href="{:U('Admin/questions/edit')}/id/{$data.que_id}" title="{$data.content}">
+                        
+                        <?php
+                                $str = $data['content'];
+                                if(strlen($str)>54){
+                                    echo mb_substr($str,0,16,'utf-8')."...";
+                                }
+                                else{
+                                    echo mb_substr($str,0,16,'utf-8');
+                                }
+                                
+                            ?>
+                        </a></td>
                         <td>{$data.publish}</td>
                         <td class="green">{$data.status}</td>
                         <td><a href="__MODULE__/Questions/edit/id/{$data.que_id}">查看</a></td>
@@ -115,7 +143,7 @@
                     </volist>
                     <tr class="table-bottom">
                     
-                        <td><input type="checkbox" name="id[]" value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
+                        <td><input type="checkbox"  value="" onclick="if(this.checked==true) { checkAll('id[]'); } else { clearAll('id[]'); }"></td>
                         
                         <td style="text-align:left">全选<button type="submit" class="button4">批量删除</a></td>
                     
@@ -143,5 +171,6 @@
 <script src="__PUBLIC__/admin/js/jquery.min.js"></script>
 <script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__/admin/js/scripts.js"></script>
+<script src="__PUBLIC__/admin/js/qiehuan.js"></script>
 </body>
 </html>
