@@ -2,35 +2,38 @@
 namespace Home\Controller;
 use Think\Controller;
 class PersonalController extends Controller {
-    public function index(){
-        //查看是否登录
+
+    public function __construct(){  
+        parent::__construct();
         if (!isset($_SESSION['user_username']) || $_SESSION['user_username']=='') {
             $this->error('请先登录',U("users/login"));
         }
+        else{   
+            $user = M('usertab');
+            $userid = $_SESSION['id'];
+            $where = 'user_id='.$userid;
+            $result = $user->where($where)->find();
+            $this->assign('user',$result);
+        }
+
+    }
+    public function index(){
+        //查看是否登录
         
-        $user = M('usertab');
-        $userid = $_SESSION['id'];
-        
-        //var_dump($userid);
-        $result = $user->where($userid)->find();
-        $this->assign('user',$result);
         $this->display();
     }
-    public function myquestions(){
-    	$id = $_SESSION['id'];
+   public function myquestions(){
+        $id = $_SESSION['id'];
         //var_dump($id);
-        if(!isset($id)){
-            $this->error("请登录！",U("Home/users/login"));
-        }
-        else{
-    	$queModel = M('question');
+        $queModel = M('question');
         $userTabModel = M('usertab');
-
+        $id='user_id='.$id;
         $dataa = $userTabModel -> where($id)->find();
 
-        
         //分页
         $count = $queModel->where($id)->count();// 查询满足要求的总记录数
+        //$count1 = $queModel->field('ans_count')->where($condition)->find();
+        //$count = $count1['ans_count'];
         $Page = new \Think\Page($count,4);
         $Page->setConfig('header','<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
         $Page->setConfig('prev','上一页');
@@ -42,35 +45,43 @@ class PersonalController extends Controller {
         $show = $Page->show();// 分页显示输出
 
 
-    	$data = $queModel->where($id)->order('publish desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $data = $queModel->where($id)->order('publish desc')->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('page',$show);// 赋值分页输出
 
-    	$this->assign('list',$data);
+        $this->assign('list',$data);
         $this->assign('lists',$dataa);
-    	$this->display();
-         }
+        $savecount = array(
+            'ask_count' => $count
+            );
+        $result = $userTabModel->where($id)->save($savecount);
+        //dump($result);
+        $this->display();
+         
     }
-    public function quedetails($qid){
-    	//问题部分$qid:data.que_id
-    	$queModel = M('question');
+     public function quedetails($qid){
+        //问题部分$qid:data.que_id
+        $queModel = M('question');
         $ansModel = M('answer');
         //用户id
-    	$id = $_SESSION['id'];
-    	$ids = $id["user_id"];
+        $id = $_SESSION['id'];
         session('que_que',$qid);
         //var_dump($qid);
-    	//var_dump($ids);
-    	//$condition['question.user_id'] = $ids;
-    	$condition['que_id'] = $qid;
+        //var_dump($ids);
+        //$condition['question.user_id'] = $ids;
+        //$condition['que_id'] = $qid;
+        $condition = "que_id=".$qid;
 
-        $cond['ans_que_id'] = $qid;
+        //$cond['ans_que_id'] = $qid;
+        $cond="ans_que_id=".$qid;
         //$cond['que_id'] = $qid;
         //var_dump($cond);
-        $where['user_id'] = $ids;
-    	//var_dump($qid);
-    	//var_dump($ids);
+        //$where['user_id'] = $ids;
+        $where='user_id='.$id;
+        //var_dump($where);
+        //var_dump($ids);
         //更新question表中的字段que_view
-        $wh['que_id'] = $qid;
+        //$wh['que_id'] = $qid;
+        $wh = "que_id=".$qid;
         $find_number = $queModel->field('que_view')->where($wh)->find();
         $find_number['que_view'] += 1;
         $save['que_view'] = $find_number['que_view'];
@@ -78,7 +89,7 @@ class PersonalController extends Controller {
         
         //$queModel->where($wh)->save($save);
 
-    	$data = $queModel->where($condition)->find();
+        $data = $queModel->where($condition)->find();
 
         //导入分页
         //$count = $ansModel->where($cond)->count();// 查询满足要求的总记录数
@@ -105,17 +116,17 @@ class PersonalController extends Controller {
         //我的提问和我的回答部分
         $userModel = M('usertab');
         $data2 = $userModel->where($where)->find();
-
+        //dump($data2);
         //热门问题部分
         $hotQue = $queModel->order('que_view desc')->limit(5)->select();
 
-    	$this->assign('list',$data);
+        $this->assign('list',$data);
         $this->assign('lists',$data1);
         $this->assign('listss',$data2);
         $this->assign('llist',$hotQue);
-        $this->assign('page',$show);// 赋值分页输出
+        $this->assign('page',$show);// 赋值分页输出*/
 
-    	$this->display();
+        $this->display();
     }
     public function addanswers(){
         $id = $_SESSION['id'];
@@ -125,55 +136,68 @@ class PersonalController extends Controller {
         $ansModel = M('answer');
         $userModel = M('usertab');
         $queModel = M('question');
-        //如果回答问题成功，为此用户添加分数,并未此用户的回答数+1
-        $user_scoree = $userModel->field('score,reply_count')->where($id)->find();
-        $userdata['score'] = $user_scoree['score']+10;
-        $userdata['reply_count'] = $user_scoree['reply_count'] + 1;
+        //如果此用户的用户状态为正常则让他回答，否则提示错误
+        $status = $userModel->where("user_id = $id")->find();
+        
+        if($status['user_status'] =='正常'){
+            //如果回答问题成功，为此用户添加分数,并未此用户的回答数+1
+            $user_scoree = $userModel->field('score,reply_count')->where($id)->find();
+            $userdata['score'] = $user_scoree['score']+10;
+            $userdata['reply_count'] = $user_scoree['reply_count'] + 1;
 
-        //如果回答成功，为此问题的回答数+1
-        $que_ans_count = $queModel->field('ans_count')->where("que_id=$que")->find();
-        $quedata['ans_count'] = $que_ans_count['ans_count']+1;
+            //如果回答成功，为此问题的回答数+1
+            $que_ans_count = $queModel->field('ans_count')->where("que_id=$que")->find();
+            $quedata['ans_count'] = $que_ans_count['ans_count']+1;
+            $ids="user_id=".$id;
+            $name = $userModel->Field('user_username')->where($ids)->find();
+            $data['content'] = I('post.content');
+            //判断内容是否为空
+            if($data['content'] == ''){
+                $this->error('请添加回答内容！');
+            }
+            else{
+                //var_dump(I('post.content'));
+                $data['user_id'] = $id;
+                //var_dump($id);
+                $data['ans_que_id'] = $que;
+                $data['action'] = '回答问题';
+                $data['score'] = 10;
+                $data['ans_username'] = $name['user_username'];
+                $data['ans_view'] = 0;
+                $time = time();
+                $pub_time = date("Y-m-d H:i:s", $time);
+                $data['publish'] = $pub_time;
+                
+                //var_dump($pub_time);
+                $result = $ansModel->add($data);
 
-        $name = $userModel->Field('user_username')->where($id)->find();
-        //var_dump($name);
-        //$idcount=$ansModel->getLastInsId();
-        //$data=$newsModel->add();
-        //$data['ans_id'] = $idcount+1;
-        $data['content'] = I('post.content');
-        //var_dump(I('post.content'));
-        $data['user_id'] = $id['user_id'];
-        //var_dump($id['user_id']);
-        $data['ans_que_id'] = $que;
-        $data['action'] = '回答问题';
-        $data['score'] = 10;
-        $data['ans_username'] = $name['user_username'];
-        $data['ans_view'] = 0;
-        $time = time();
-        $pub_time = date("Y-m-d H:i:s", $time);
-        $data['publish'] = $pub_time;
-        //var_dump($pub_time);
-        $result = $ansModel->add($data);
-        if($result){
-            $iddd = $result;
-            //var_dump($iddd);
-            $userModel->where($id)->save($userdata);
-            $queModel->where("que_id=$que")->save($quedata);
-            $this->success('发表成功',"quedetails/qid/{$que}");
-        }else{
-            $this->error('发表失败');
-        }   
+                if($result){
+                    $iddd = $result;
+                    //var_dump($iddd);
+                    $userModel->where($id)->save($userdata);
+                    $queModel->where("que_id=$que")->save($quedata);
+                    $this->success('发表成功',"quedetails/qid/{$que}");
+                }else{
+                    $this->error('发表失败');
+                }   
 
+            }
+        }
+        else{
+            $this->error('对不起！您已被封禁，不能发表回答！');
+        }
+        
+        
     }
     public function hotquedetails($qid){
         //问题部分
         $queModel = M('question');
         //用户id
         $id = $_SESSION['id'];
-        $ids = $id["user_id"];
         //var_dump($ids);
         //$condition['question.user_id'] = $ids;
-        $condition['que_id'] = $qid;
-        $where['user_id'] = $ids;
+        $condition = 'que_id='.$qid;
+        $where='user_id='.$id;
         //var_dump($qid);
         //var_dump($ids);
 
@@ -217,17 +241,16 @@ class PersonalController extends Controller {
         $ansModel = M('answer');
         $userModel = M('usertab');
         $id = $_SESSION['id'];
-        $condition['answer.user_id'] = $id['user_id'];
-        $con['user_id'] = $id['user_id'];
-
+        $condition= 'answer.user_id='.$id;
+        $con = 'user_id='.$id;
+        $id='user_id='.$id;
         $dataa = $userModel->where($id)->find();
-        
+        //dump($dataa);
 
         //导入分页
         //$count = $ansModel->join('RIGHT JOIN question ON question.que_id = answer.ans_que_id' )->where($condition)->count();// 查询满足要求的总记录数
-        $count1 = $userModel->field('reply_count')->where($con)->find();
-        $count = $count1['reply_count'];
-     
+        $count = $ansModel->where($id)->count();
+
         $Page = new \Think\Page($count,4);// 实例化分页类 传入总记录数和每页显示的记录数(25)
 
         $Page->setConfig('header','<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
@@ -241,26 +264,31 @@ class PersonalController extends Controller {
 
         $data = $ansModel->Field('answer.content as ans_content,question.content as que_content,answer.ans_id,answer.publish as ans_publish,question.pag,answer.ans_view,question.que_view,question.ans_count,answer.user_id')->join('RIGHT JOIN question ON question.que_id = answer.ans_que_id' )->where($condition)->order('ans_publish desc')->limit($Page->firstRow.','.$Page->listRows)->select();
 
+         $savecount = array(
+            'reply_count' => $count
+            );
+        $result = $userModel->where($id)->save($savecount);
+        //dump($result);
         $this->assign('list',$data);
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('lists',$dataa);
 
         $this->display();
     }
-     public function ansdetails($aid){
+      public function ansdetails($aid){
         $ansModel = M('answer');
         $queModel = M('question');
 
 
         $id = $_SESSION['id'];
-        $condition['answer.user_id'] = $id['user_id'];
-        $condition['ans_id'] = $aid;
+        $condition="answer.user_id=".$id;
+        $condition ='ans_id='.$aid;
         session('ans_aid',$aid);
         //var_dump($aid);
 
         //更新question表中的que_view字段
-        $wh['ans_id'] = $aid;
-        //var_dump($wh);
+        //$wh['ans_id'] = $aid;
+        $wh = 'que_id='.$aid;
         $find_number = $queModel->field('que_view')->join('answer ON question.que_id = answer.ans_que_id' )->where($wh)->find();
         
         $find_number['que_view'] += 1;
@@ -293,9 +321,9 @@ class PersonalController extends Controller {
         $data1 = $queModel->Field('answer.content as ans_content,question.content as que_content,answer.ans_id,answer.publish as ans_publish,question.pag,answer.ans_view,question.ans_count,answer.user_id,answer.ans_username,usertab.score as user_score')->join('answer ON question.que_id = answer.ans_que_id')->join('usertab ON answer.user_id = usertab.user_id' )->where($where)->order('ans_publish desc')->limit($Page->firstRow.','.$Page->listRows)->select();
  
 
-        $ids = $id["user_id"];
-        $where['user_id'] = $ids;
+        $where = "user_id=".$id;
         $userModel = M('usertab');
+
         $data2 = $userModel->where($where)->find();
 
         //热门问题部分
@@ -311,17 +339,24 @@ class PersonalController extends Controller {
     }
     public function doansAdd(){
         $id = $_SESSION['id'];
+
         $que = $_SESSION['ss_que'];//得到回答的问题que_id
         $ans_aid = $_SESSION['ans_aid'];
-        $whe['que_id'] = $que['ans_que_id'];
+        $whe= 'que_id='.$que['ans_que_id'];
         //var_dump($ans_aid);
         //var_dump($que);
 
         $ansModel = M('answer');
         $userModel = M('usertab');
         $queModel = M('question');
-        //如果回答问题成功，为此用户添加分数,并未此用户的回答数加1
-        $user_scoree = $userModel->field('score,reply_count')->where($id)->find();
+        //如果此用户的用户状态为正常则让他回答，否则提示错误
+        $status = $userModel->where("user_id = $id")->find();
+        
+        if($status['user_status'] =='正常'){
+            //如果回答问题成功，为此用户添加分数,并未此用户的回答数加1
+        //$id = 'id='.$id;
+        $ww['user_id'] = $id;
+        $user_scoree = $userModel->field('score,reply_count')->where($ww)->find();
         $userdata['score'] = $user_scoree['score']+10;
         $userdata['reply_count'] = $user_scoree['reply_count']+1;
         //如果回答成功，为此问题的回答数+1
@@ -336,7 +371,11 @@ class PersonalController extends Controller {
         
         //$data['ans_id'] = $idcount+1;
         $data['content'] = I('post.content');
-        $data['user_id'] = $id['user_id'];
+        if($data['content'] == ''){
+            $this->error('请添加回答内容！');
+        }
+        else{
+            $data['user_id'] = $id;
         $data['ans_que_id'] = $que['ans_que_id'];
         $data['action'] = '回答问题';
         $data['score'] = 10;
@@ -357,14 +396,39 @@ class PersonalController extends Controller {
             $this->error('评论失败');
         }       
        
+        }
+        }
+        else{
+            $this->error('对不起！您已被封禁，不能发表回答！');
+        }
+        
+        
     }
-    public function certeacher()
+   public function certeacher()
     {
+        $user = M('usertab');
+        $userid = $_SESSION['id'];
+        $where = 'user_id='.$userid;
+        $result = $user->where($where)->find();
+
+        $teacherModel = M('teachertab');
+        $teaname = 'user_name='."'".$result['user_username']."'";
+        if($teacherModel->where($teaname)->select()){
+            $this->error('不能重复认证',U('home/personal/index'));
+        }
+        $this->assign('user',$result);
+
         $this->display();
     }
+
     //xiaodi
     public function upload()
     {
+        //获得当前用户信息
+        $condition['user_id']= $_SESSION['id'];
+        $userModel = M('usertab');
+        $user = $userModel->where($condition)->find();
+
         //设置文件格式
         $upload = new \Think\Upload();
         $upLoad->maxSize = 3145728;
@@ -379,35 +443,32 @@ class PersonalController extends Controller {
         }else{
             //获得表单数据
             $data = array(
-                // 'user_name' => $_SESSION['user_username'],
-                'user_name' => '唠唠唠',
+                'user_name' => $user['user_username'],
                 'tea_school' => $_POST['school'],
                 'tea_subject' => $_POST['subject'],
                 'tea_credit' => '认证中',
-                'tea_score' => $_SESSION['user_score'], 
+                'tea_score' => $_user['score'], 
                 'tea_image' => $picture['fileField']['savepath'].$picture['fileField']['savename']
             );
             $teacherModel = M('teachertab');
             $teacher = $teacherModel->add($data);
-            $this->success('申请成功,认证中...');
+            $this->redirect('personal/index');
         }
     }
+
+   
+
     public function myself(){
-        $user = M('usertab');
-        $userid = $_SESSION['id'];
-        $where = 'user_id='.$userid;
-        $result = $user->where($userid)->find();
-        $this->assign('user',$result);
+        
         
         $this->display();
     }
     public function edit(){ 
         if (IS_POST) {
-            
             $model = M("usertab");
             $b = $model->create();
             if($model->save()){ 
-                $this->success("修改成功",'index');
+                $this->redirect('index');
             }
             else{   
                 $this->error("修改失败或未作修改");
@@ -435,17 +496,17 @@ class PersonalController extends Controller {
                 //组织数据
                 $id = $_SESSION['id'];
                 $findid = 'user_id='.$id;;
-                $b = $user->where($id)->find();
+                $b = $user->where($findid)->find();
                 
                 //设置thumb字段属性(目录+名字)
-               $data['head_picture']=$info['headimg']['savepath'].$info['headimg']['savename'];
-               $b['head_picture']=$data['head_picture'];
-              
-               $result = $user->save($b);
+               	$data['head_picture']=$info['headimg']['savepath'].$info['headimg']['savename'];
+               	$b['head_picture']=$data['head_picture'];
+
+               	$result = $user->save($b);
 
                     if($result){
 
-                        $this->success("添加成功",'myself');
+                        $this->redirect('myself');
                     }
                     else{   
                         $this->error("添加失败");
@@ -454,10 +515,17 @@ class PersonalController extends Controller {
         }
     }
     public function mytests(){
-        $testsModel = M('my_tests');
+        //获得当前用户user_id
+        $userid = $_SESSION['id'];
+        $id='user_id='.$userid;
+
+        $user = M('usertab');
+        $result = $user->where($id)->find();
+        $this->assign('user',$result);
 
         //分页
-        $count = $testsModel->count();
+        $testsModel = M('my_tests');
+        $count = $testsModel->where($id)->count();
         $Page = new \Think\Page($count,4);
         $Page->setConfig('header','<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
         $Page->setConfig('prev','上一页');
@@ -467,7 +535,7 @@ class PersonalController extends Controller {
         $Page->setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %END% %HEADER%');
 
         $show = $Page->show();
-        $data = $testsModel->order('test_publish desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $data = $testsModel->where($id)->order('test_publish desc')->limit($Page->firstRow.','.$Page->listRows)->select();
         
         $this->assign('list',$data);
         $this->assign('page',$show);
@@ -482,7 +550,8 @@ class PersonalController extends Controller {
         $testsModel = M('my_tests');
         $where['test_id'] = $id;
         session('t_id',$id);
-        //var_dump($_SESSION['t_id']);
+        //var_dump($id);
+
        
         $data = $testsModel->find($id);
         
@@ -549,13 +618,18 @@ class PersonalController extends Controller {
         $mytests->where($data)->delete();
     }
     public function myvideos(){
-        $collectVideoModel = M('collectvideo');
-        $condition['user_id'] = '1';
-        $collectVideoModel = $collectVideoModel->where($condition);
-        //$collectvideo = $collectVideoModel->select();
+        //获得当前用户user_id
+        $userid = $_SESSION['id'];
+        $id='user_id='.$userid;
+        //显示头像
+        $user = M('usertab');
+        $result = $user->where($id)->find();
+        $this->assign('user',$result);
 
+        //显示我收藏的视频
+        $collectVideoModel = M('collectvideo');
         //分页
-        $count = $collectVideoModel->count();
+        $count = $collectVideoModel->where($id)->count();
         $Page = new \Think\Page($count,4);
         $Page->setConfig('header','<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
         $Page->setConfig('prev','上一页');
@@ -565,14 +639,11 @@ class PersonalController extends Controller {
         $Page->setConfig('theme','%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %END% %HEADER%');
 
         $show = $Page->show();
-        $data = $collectVideoModel->order('video_id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+        $data = $collectVideoModel->where($id)->order('video_id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
         
         $this->assign('collect',$data);
         $this->assign('page',$show);
 
-        //$this->assign('collect',$collectvideo);
-        // dump($collectvideo);
-        // exit();
         $this->display();
     }
 

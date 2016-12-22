@@ -29,59 +29,16 @@ class TestsController extends Controller {
     }
     public function testdetails($id){
         $testsModel = M('tests');
-        $where['test_id'] = $id;
+        
         session('t_id',$id);
         //var_dump($_SESSION['t_id']);
+        $id = "test_id=".$id;
        
-        $data = $testsModel->find($id);
-        
+        $data = $testsModel->where($id)->find();
+        // dump($data);
         $this->assign('tests',$data);
     	$this->display();
     }
-    /*public function collect(){
-        $id = I('post.id');
-        $u_id = $_SESSION['id'];
-        //dump($id);
-        //dump($u_id);
-        $mytests = M('my_tests');
-        $tests = M('tests');
-        $data['test_id'] = $id;  
-
-        $result = $mytests->where($data)->select();
-        //dump($result);
-        //如果此用户没有收藏过,则将此数据添加到my_tests表中
-        if(!isset($_SESSION[$id+10000])&&$result>0){
-            $sessionname = $id+10000;
-            session($sessionname,$sessionname); 
-
-            $test['test_id'] = $id;
-            $where = $tests->where($test)->find();
-
-            $condition['user_id'] = $u_id['user_id'];
-            $condition['test_id'] = $id;
-            $condition['test_title'] = $where['test_title'];
-            $condition['test_content'] = $where['test_content'];
-            $condition['test_type'] = $where['test_type'];
-            $condition['test_cover'] = $where['test_cover'];
-            $condition['test_img'] = $where['test_img'];
-            $condition['test_publish'] = $where['test_publish'];
-            $condition['test_count'] = $where['test_count'];
-            $condition['collect'] = 0;
-            //dump($condition);
-
-            $mytests->add($condition);
-        }*/
-        /*if(!isset($_COOKIE[$_POST['id']+10000])&&$result>0){
-            $cookiename = $_POST['id']+10000;
-            setcookie($cookiename,40,time()+60,'/'); 
- 
-            $data['info'] = "ok";
-            $data['status'] = '1';
-            $this->ajaxReturn($data);
-             
-            exit();
-        }
-    }*/
     public function cancel(){
         $id = I('post.id');
         $u_id = $_SESSION['id'];
@@ -100,10 +57,13 @@ class TestsController extends Controller {
     //试卷收藏
     public function collect($ids)
     {
+        //查看是否登录
+        if (!isset($_SESSION['user_username']) || $_SESSION['user_username']=='') {
+            $this->error('请先登录',U("users/login"));
+        }
         $id = $_SESSION['id'];
         $condition['test_id'] = $ids;
-        $condition['user_id'] = $id['user_id'];
-         //dump($condition);
+        $condition['user_id'] = $id;
        
         $mytestsModel = M('my_tests');
         if($mytestsModel->where($condition)->select()){
@@ -111,10 +71,10 @@ class TestsController extends Controller {
         }
         $testsModel = M('tests');
         $wh['test_id'] = $ids;
-        $tests = $testsModel->where($wh)->find();
+        $tests = $testsModel->where($condition)->find();
 
         $data = array(
-                'user_id' => $id['user_id'],
+                'user_id' => $id,
                 'test_id' => $ids,
                 'test_title' => $tests['test_title'],
                 'test_count' => $tests['test_count'],
@@ -124,10 +84,9 @@ class TestsController extends Controller {
                 'test_cover' => $tests['test_cover'],
                 'test_publish' => $tests['test_publish']
             );
-        
-        //$collectvideo = $collectVideoModel->add($data);
+
         if($mytestsModel->add($data)){
-            $this->success('收藏成功',U("home/tests/testdetails/id/{$ids}"));
+            $this->redirect('home/tests/testdetails/id/{$ids}');
         }else{
             $this->error('收藏失败');
         }

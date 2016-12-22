@@ -1,20 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>问答详情</title>
-<link href="__PUBLIC__/home/css/questions.css" rel="stylesheet" type="text/css" />
-<link href="__PUBLIC__/home/css/public.css" rel="stylesheet" type="text/css" />
-<link href="__PUBLIC__/home/css/contentright.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>学霸养成</title>
+    <link href="__PUBLIC__/home/css/questions.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/home/css/public.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/home/css/contentright.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/home/js/jquery.min.js"></script>
 </head>
 
 <body>
 <div class="header">
     <div class="mybody">
-        <a href="#"><img src="__PUBLIC__/home/images/logo.jpg" alt="logo" /></a>
-        <div class="login">
-            <a href="#">登陆</a> | <a href="#">注册</a>
-        </div>
+        <div class="logo"><a href="#"><img src="__PUBLIC__/home/images/logo.jpg" alt="logo" /></a></div>
         <ul class="nav">
             <li><a href="{:U('Home/index/index')}">首页</a></li>
             <li class="navnow"><a href="{:U('Home/learnansq/index')}">学霸问答</a></li>
@@ -23,6 +21,27 @@
             <li><a href="{:U('Home/tests/index')}">学霸试卷</a></li>
             <li><a href="{:U('Home/personal/index')}">个人中心</a></li>
         </ul>
+        <div class="login">
+            <?php
+                if(!isset($_SESSION['user_username'])||$_SESSION['user_username']==''){
+                    echo "<a href='".U('users/login')."'>登录</a> | <a href='".U('users/register')."'>注册</a>";
+            }
+            else{
+            $str = $_SESSION['user_username'];
+            if(strlen($str)>6){
+
+            echo "<a href='".U('personal/myself')."'>".mb_substr($str,0,6,'utf-8')."..."."</a>"."&nbsp;&nbsp;<a href='__MODULE__/users/logout'>退出</a>";
+            }
+            else{
+
+            echo "<a href='".U('personal/myself')."'>".$str."</a>"."&nbsp;&nbsp;<a href='__MODULE__/users/logout'>退出</a>";
+            }
+
+
+            }
+
+            ?>
+        </div>
     </div>
 </div>
 <div class="ad">
@@ -31,116 +50,232 @@
     </div>
 </div>
 <div class="content">
-<div class="mybody">
-    <div class="bread"><span>学霸养成</span> > <a href="{:U('Home/learnansq/index')}">学霸问答</a> > <a href="#">问答详情</a></div>
-    <div class="right">
-        <div class="righttop">
-            <h1 class="title title2">我的问答<a href="#" class="ckgd"></a></h1>
-            <div class="xzdr">
-                <img src="__PUBLIC__/home/images/dr1.jpg" width="150" height="190" alt="dr" class="xzdrimg"/>
-                <div class="xzright">
-                <div class="drname">
-                <h1>{$listss.user_username}</h1>
-                <span>
+    <div class="mybody">
+        <div class="bread"><span>学霸养成</span> > <a href="{:U('Home/learnansq/index')}">学霸问答</a> > <a href="#">问答详情</a></div>
+        <div class="right">
+            <div class="righttop" style="display:none">
+                <h1 class="title title2">我的问答<a href="#" class="ckgd"></a></h1>
+                <div class="xzdr">
+                    <img src="__PUBLIC__/{$user.head_picture}" width="150" height="190" alt="dr" class="xzdrimg"/>
+                    <div class="xzright">
+                        <div class="drname">
+                            <h1>{$listss.user_username}</h1>
+                            <span>
                 <?php
                 $str1 = $listss['score'];
                 $str2 = $str1/100;
                 echo LV.intval($str2);
                 ?>
                 </span>
-                </div>
-                <a href="#"><h3 class="tw">我的提问：{$listss.ask_count}</h3></a>
-                <a href="#"><h3 class="hd2">我的回答：{$listss.reply_count}</h3></a>
+                        </div>
+                        <a href="#"><h3 class="tw">我的提问：{$listss.ask_count}</h3></a>
+                        <a href="#"><h3 class="hd2">我的回答：{$listss.reply_count}</h3></a>
+                    </div>
                 </div>
             </div>
-      </div>
+            <?php
+    	if(isset($_SESSION['user_username'])){
+    		echo "<script>";
+            echo "$('.righttop').css('display','block');";
+            echo "</script>";
+        }
+        ?>
         <div class="righttop righttop2">
-            <h1 class="title">热门问题<a href="#" class="ckgd">更多&nbsp;>></a></h1>
-            <ul class="topul">
-            <volist name="llist" id="data">
-               <li><a href="{:U('Home/learnansq/lquedetails')}/qid/{$data.que_id}">{$data.content}</a><span><?php $str = $data['publish']; echo substr($str,5,5); ?></span></li>
-            </volist>
-            
+                <h1 class="title">热门问题<a href="#" class="ckgd">更多&nbsp;>></a></h1>
+        <ul class="topul">
+                <volist name="llist" id="data">
+                <li><a href="{:U('Home/learnansq/lquedetails')}/qid/{$data.que_id}">{$data.content}</a><span><?php $str = $data['publish']; echo substr($str,5,5); ?></span></li>
+        </volist>
+
         </ul>
         </div>
-    </div>
-    <div class="left">
-      <div class="question">
-      <div class="qtop">
-            <h1><span>问题：</span>{$list.title}</h1>
-            <p>{$list.content}</p>
-       </div>
-            <div class="fl">
-            <div class="ssfl"><img src="__PUBLIC__/home/images/ssfl.gif" width="15" height="15" alt="ssfl" /><span>分类：{$list.pag}</span></div>
-            <div class="ssfl ssfl2"><img src="__PUBLIC__/home/images/sj.gif" width="15" height="15" alt="sj" /><span>时间：{$list.publish} </span></div>
-            <div class="ssfl ssfl2"><img src="__PUBLIC__/home/images/twz.gif" width="15" height="15" alt="zz" /><span>提问者：{$list.que_username}</span></div>
-            <div class="ssfl ssfl2"><img src="__PUBLIC__/home/images/scan.gif" width="15" height="15" alt="zz" /><span>{$list.que_view}人看过</span></div>
+        </div>
+        <div class="left">
+                <div class="question">
+                <div class="qtop">
+                <h1><span>问题：</span>{$list.title}</h1>
+        <p>{$list.content}</p>
+        </div>
+        <div class="fl">
+                <div class="ssfl"><img src="__PUBLIC__/home/images/ssfl.gif" width="15" height="15" alt="ssfl" /><span>分类：{$list.pag}</span></div>
+        <div class="ssfl ssfl2"><img src="__PUBLIC__/home/images/sj.gif" width="15" height="15" alt="sj" /><span>时间：{$list.publish} </span></div>
+        <div class="ssfl ssfl2"><img src="__PUBLIC__/home/images/twz.gif" width="15" height="15" alt="zz" /><span>提问者：{$list.que_username}</span></div>
+        <div class="ssfl ssfl2"><img src="__PUBLIC__/home/images/scan.gif" width="15" height="15" alt="zz" /><span>{$list.que_view}人看过</span></div>
         </div>
         </div>
         <ul class="contentul">
-        <li>
-            <h3>我要回答：</h3>
-                <form action="{:U('Home/learnansq/addanswers')}" method="post">
-                    <textarea placeholder="请输入回答内容" name="content" id="content" class="text"></textarea>
-                    <input type="submit" value="提交" class="answerbtn" />
+                <li>
+                <h3>我要回答：</h3>
+        <form action="{:U('Home/learnansq/addanswers')}" method="post">
+                <textarea placeholder="请输入回答内容" name="content" id="content" class="text"></textarea>
+                <input type="submit" value="提交" class="answerbtn" />
                 </form>
-        </li>
-        <volist name="lists" id="data">
-            <li>
+                </li>
+                <volist name="lists" id="data">
+                <li>
                 <div class="lileft">
                 <img src="__PUBLIC__/home/images/head.gif" width="80" height="80" alt="head" />
                 </div>
                 <div class="liright">
-                    <div class="rtop">
-                        <h3>姓名：{$data.ans_username}</h3>
-                        <span class="level">
-                        <?php
-                        $str1 = $data['user_score'];
-                        $str2 = $str1/100;
-                        echo LV.intval($str2);
-                        ?>
-                        
-                        </span>
-                        
-                    </div>
-                    <div class="rtop">
-                        <div class="hd">
-                        <h3>回答：</h3>
-                        </div>
-                        <div class="hdp">
-                        <p>{$data.ans_content}</p>
-                        </div>
-                    </div>
-                    <div class="ssfl ssfl2 ssflul"><img src="__PUBLIC__/home/images/sj.gif" width="15" height="15" alt="sj" /><span>时间：{$data.ans_publish}</span></div>
-                    
-                    <div class="ssfl ssfl2 ssflul" id="zan"><img src="images/dz.png" width="15" height="15" alt="sj" id="zanimg"/>
-                    <span id="zanshu">3赞</span></div>
-                </div>
-            </li>
-        </volist>   
+                <div class="rtop">
+                <h3>姓名：{$data.ans_username}</h3>
+        <span class="level">
+        <?php
+                $str1 = $data['user_score'];
+        $str2 = $str1/100;
+        echo LV.intval($str2);
+        ?>
+
+        </span>
+
+        </div>
+        <div class="rtop">
+                <div class="hd">
+                <h3>回答：</h3>
+        </div>
+        <div class="hdp">
+                <p>{$data.ans_content}</p>
+        </div>
+        </div>
+        <div class="ssfl ssfl2 ssflul"><img src="__PUBLIC__/home/images/sj.gif" width="15" height="15" alt="sj" /><span>时间：{$data.ans_publish}</span></div>
+
+        <div class="ssfl ssfl2 ssflul" id="zan" name="zan[]" value="{$data['ans_id']}">
+                <a class="z" id="{$data['ans_id']}">
+                <!--href="{:U('home/learnansq/zan')}/id/{$data.ans_id}" -->
+                <img src="__PUBLIC__/home/images/dz.png" width="15" height="15" alt="sj" id="zanimg"/>
+                </a>
+                <span id="zanshu">{$k.}{$data.ans_view}人赞过</span>
+        </div>
+        </div>
+        </li>
+        </volist>
         </ul>
         <div class="page">
                 {$page}
-    </div>
-    </div>
-    
-</div>
-</div>
-</div>
-<div class="footer">
-    <div class="mybody">
-    <p>版权所有：河北师范大学软件学院 永信指导小组 地址：石家庄市南二环东路20号 冀ICP备字201401号</p>
-    </div>
-</div>
-</body>
-<script>
-    var zan=document.getElementById("zan");
-    var zanimg=document.getElementById("zanimg");
-    var zanshu=document.getElementById("zanshu");
-    var zanimgsrc=zanimg.src;
-    zan.onclick=function(){
-        zanimg.src="__PUBLIC__/home/images/dzh.png";
-        zanshu.style.color="#2f8abb";
-        }
-</script>
+                </div>
+                </div>
+
+                </div>
+                </div>
+                </div>
+                <div class="footer">
+                <div class="mybody">
+                <p>版权所有：河北师范大学软件学院 永信指导小组 地址：石家庄市南二环东路20号 冀ICP备字201401号</p>
+        </div>
+        </div>
+        </body>
+        <script type="text/javascript" src="__PUBLIC__/home/js/jquery.min.js"></script>
+            <script>
+                $(".mybody").ready(function(){
+                    /*var zan=document.getElementById("zan");
+                     var zanimg=document.getElementById("zanimg");
+                     var zanshu=document.getElementById("zanshu");
+                     var zanimgsrc=zanimg.src;
+                     zan.onclick=function(){
+                     zanimg.src="__PUBLIC__/home/images/dzh.png";
+                     zanshu.style.color="#2f8abb";
+                     }*/
+                    var clickNum=0;
+                    $(".z").on('click',function(){
+                        clickNum++;
+                        if(clickNum % 2==1){
+                            console.log(clickNum);
+                            var zan=document.getElementById("zan");
+                            var zanimg=document.getElementById("zanimg");
+                            var zanshu=document.getElementById("zanshu");
+                            var zanimgsrc=zanimg.src;
+                            zanimg.src="__PUBLIC__/home/images/dzh.png";
+                            zanshu.style.color="#2f8abb";
+
+                            var Oa=$('.z');
+                            var id=Oa.attr('id');//获取id属性
+                            //console.log(id);
+
+                            var vl=$("#zanshu").text();
+                            vl=parseInt(vl)+1;
+                            var data = {
+                                'id':id
+                            };
+                            zanshu.innerHTML = vl+"人赞过";
+
+                            $.ajax({
+                                url : "__MODULE__/learnansq/zan",
+                                type : "post",
+                                success : function(res) {
+                                    console.log(res);
+                                    if (res == "1") {
+
+                                    }
+                                    else {
+                                        $("#zanshu").innerHTML = vl+"人赞过";
+                                        console.log(res);
+                                    }
+                                },
+                                error : function(code, info) {
+
+                                },
+                                beforeSend: function() {
+                                    console.log("123123");
+                                },
+                                data : data
+                            });
+                        }
+                        else{
+                            console.log(clickNum);
+                            var zan=document.getElementById("zan");
+                            var zanimg=document.getElementById("zanimg");
+                            var zanshu=document.getElementById("zanshu");
+                            var zanimgsrc=zanimg.src;
+                            zanimg.src="__PUBLIC__/home/images/dz.png";
+                            zanshu.style.color="#2f8abb";
+
+                            var Oa=$('.z');
+                            var id=Oa.attr('id');//获取id属性
+                            console.log(id);
+
+                            var vl=$("#zanshu").text();
+                            vl=parseInt(vl)-1;
+                            var data = {
+                                'id':id
+                            };
+                            zanshu.innerHTML = vl+"人赞过";
+
+                            $.ajax({
+                                url : "__MODULE__/learnansq/delzan",
+                                type : "post",
+                                success : function(res) {
+                                    console.log(res);
+                                    if (res == "1") {
+                                        console.log("aaa");
+                                    }
+                                    else {
+                                        console.log("bbb");
+                                    }
+                                },
+                                error : function(code, info) {
+                                    console.log("iii");
+                                },
+                                beforeSend: function() {
+                                    console.log("1111");
+                                },
+                                data : data
+                            });
+                        }
+                        /*$.ajax({
+                         url: 'Home/learnansq/zan',
+                         type: 'post',
+                         dataType: 'json',
+                         data: {"id":id},
+                         success: function(data,status){
+                         if(status == 'success'){
+                         alert('success!');
+                         }
+                         },
+                         error: function(data,err){
+                         alert('error!');
+                         }
+                         }); */
+                    })
+                });
+            </script>
 </html>

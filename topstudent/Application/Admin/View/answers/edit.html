@@ -9,31 +9,31 @@
     <meta name="author" content="LayoutIt!">
     <link href="__PUBLIC__/admin/css/bootstrap.min.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/css/style.css" rel="stylesheet">
-    <link href="__PUBLIC__/admin/css/styleww.css" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style2.css" rel="stylesheet">
 </head>
 
 <body>
 <div class="container-fluid">
-	<div class="row header">
-    	<h1>学霸养成后台管理系统<span>欢迎您，王小明！<a href="login.html">退出</a></span></h1>
+    <div class="row header">
+        <h1>学霸养成后台管理系统<span>{$_SESSION['adm_username']}&nbsp;<a href="__MODULE__/Admins/logout">退出</a></a></span></h1>
     </div>
 </div>
 <div class="container-fluid">
-	<div class="row content">
-    	<div class="col-md-2 col-xs-2 left">
-        	<div class="panel-group" id="accordion">
-    			<div class="panel panel-default">
-        			<div class="panel-heading">
-            			<h4 class="panel-title con">
-                		<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">内容管理</a>
-            			</h4>
-        			</div>
-        			<div id="collapseOne" class="panel-collapse collapse">
+    <div class="row content">
+        <div class="col-md-2 col-xs-2 left">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title con">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">内容管理</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
-                        	<ul>
-                            	<li><a href="内容管理-视频管理.html">视频管理</a></li>
-                                <li><a href="内容管理-课本管理.html">课本管理</a></li>
-                                <li><a href="内容管理-试卷管理.html">试卷管理</a></li>
+                            <ul>
+                                <li><a href="{:U('Admin/videos/index')}">视频管理</a></li>
+                                <li><a href="{:U('Admin/books/index')}">课本管理</a></li>
+                                <li><a href="{:U('Admin/tests/index')}">试卷管理</a></li>
                             </ul>
                         </div>
                     </div>
@@ -46,13 +46,13 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse in">
                         <div class="panel-body">
-                        	<ul>
-                            	<li><a href="{:U('Admin/questions/index')}">问题审核</a></li>
+                            <ul>
+                                <li><a href="{:U('Admin/questions/index')}">问题审核</a></li>
                                 <li class="linow"><a href="{:U('Admin/answers/index')}">回复审核</a></li>
                             </ul>
                         </div>
-        			</div>
-    			</div>
+                    </div>
+                </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title user">
@@ -61,12 +61,28 @@
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body">
-                        	<ul>
-                            	<li><a href="用户管理-用户列表.html">用户列表</a></li>
-                                <li><a href="用户管理-教师管理.html">教师管理</a></li>
+                            <ul>
+                                <li><a href="{:U('Admin/user/index')}">用户列表</a></li>
+                                <li><a href="{:U('Admin/user/teacher')}">教师管理</a></li>
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title user">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">管理员管理</a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse ">
+                        <div class="panel-body">
+                            <ul>
+                                <li><a href="{:U('Admin/admins/index')}">管理员列表</a></li>
+                                <li><a href="{:U('Admin/admins/add')}">添加管理员</a></li>
+                                <li><a href="{:U('Admin/admins/edit')}">个人密码修改</a></li>
+                            </ul>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -76,7 +92,15 @@
             <h1>回复详情</h1>
             <div class="row content-righh">
                 <div class="col-md-2 col-xs-2 lefttt">
-                    <h1>问题标题：</h1>
+                    <p></p>
+                </div>
+                <div class="col-md-10 col-xs-10 rightww">
+                    <p></p>
+                </div>
+            </div>
+            <div class="row content-righh">
+                <div class="col-md-2 col-xs-2 lefttt">
+                    <p>问题标题：</p>
                 </div>
                 <div class="col-md-10 col-xs-10 rightww">
                     <p>{$list.title}</p>
@@ -84,7 +108,7 @@
             </div>
             <div class="row content-righh">
                 <div class="col-md-2 col-xs-2 lefttt">
-                    <h1>问题详情：</h1>
+                    <p>问题详情：</p>
                 </div>
                 <div class="col-md-10 col-xs-10 rightww">
                     <p>{$list.que_content}</p>
@@ -92,7 +116,7 @@
             </div>
             <div class="row content-righh underline  p-bottom">
                 <div class="col-md-2 col-xs-2 lefttt">
-                    <h1>分类标签：</h1>
+                    <p>分类标签：</p>
                 </div>
                 <div class="col-md-10 col-xs-10 rightww">
                     <p>{$list.pag}</p>
@@ -100,7 +124,7 @@
             </div>
             <div class="row content-righh p-bottom">
                 <div class="col-md-2 col-xs-2 lefttt">
-                    <h1>回复内容：</h1>
+                    <p>回复内容：</p>
                 </div>
                 <div class="col-md-10 col-xs-10 rightww">
                     <p>{$list.ans_content}</p>
@@ -108,7 +132,7 @@
             </div>
             <div class="row content-righh">
                 <div class="col-md-2 col-xs-2 lefttt">
-                    <h1>回复人：</h1>
+                    <p>回复人：</p>
                 </div>
                 <div class="col-md-10 col-xs-10 rightww">
                     <p>{$list.ans_username}</p>
@@ -116,7 +140,7 @@
             </div>
             <div class="row content-righh">
                 <div class="col-md-2 col-xs-2 lefttt">
-                    <h1>回复时间：</h1>
+                    <p>回复时间：</p>
                 </div>
                 <div class="col-md-10 col-xs-10 rightww">
                     <p>{$list.ans_publish}</p>
@@ -127,11 +151,11 @@
                     <p></p>
                 </div>
                 <div class="col-md-10 col-xs-10 rightww">
-                    <div class="buttongroup">
                     
-                            <button type="submit" class="button1">删除回复</a>     
-                    </div>
-                    <a href="{:U('Admin/answers/index')}" class="button2">返回</a> 
+                    
+                            <button type="submit" class="btn button1">删除回复</button>     
+
+                    <a href="{:U('Admin/answers/index')}" class="btn button2">返回</a> 
                 </div>
                 </div>
             </div>
@@ -142,5 +166,6 @@
 <script src="__PUBLIC__/admin/js/jquery.min.js"></script>
 <script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__/admin/js/scripts.js"></script>
+<script src="__PUBLIC__/admin/js/qiehuan.js"></script>
 </body>
 </html>
