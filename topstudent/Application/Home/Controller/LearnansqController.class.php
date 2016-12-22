@@ -183,7 +183,6 @@ class LearnansqController extends Controller {
         $data = $queModel->where($condition)->find();
         //回答部分显示
         //导入分页
-        //$count = $queModel->join('RIGHT JOIN answer ON question.que_id = answer.ans_que_id')->where($condition)->count();// 查询满足要求的总记录数
         $count1 = $queModel->field('ans_count')->where($condition)->find();
         $count = $count1['ans_count'];
      
@@ -479,39 +478,5 @@ class LearnansqController extends Controller {
         }
          
     }
-    public function delzan(){
-        $id = I('post.id'); 
-        if(isset($_SESSION[$id+10000])){
-            $cookiename = $id+10000;
-            session_unset($cookiename);
-
-            $dataa=I('post.id');
-            $ids = $_SESSION['id'];
-
-            $obj = M("answer");
-            $da['ans_id'] = $dataa;
-            $data = $obj->where($da)->find();
-            $where['ans_view'] = $data['ans_view']-1;
-            $result = $obj->where($da)->save($where);
-
-            $a = 1;
-            dump($a);     
-        }
-        else{
-             $cookiename = $id+10000;
-            session_unset($cookiename);
-
-            $dataa=I('post.id');
-            $ids = $_SESSION['id'];
-
-            $obj = M("answer");
-            $da['ans_id'] = $dataa;
-            $data = $obj->where($da)->find();
-            $where['ans_view'] = $data['ans_view']-1;
-            $result = $obj->where($da)->save($where);
-
-            $a = 1;
-            dump($a);     
-        }
-    }
+    
 }
